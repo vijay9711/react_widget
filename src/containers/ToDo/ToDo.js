@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-const ToDo = () => {
-    return (
-        <div>
-            <h1>I'm ToDo</h1>
-        </div>
-    )
+export class ToDo extends Component {
+    static propTypes = {
+
+    }
+
+    render() {
+        return (
+            <div>
+                    
+            </div>
+        )
+    }
 }
-export default ToDo;
+
+export default ToDo

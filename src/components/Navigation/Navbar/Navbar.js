@@ -11,7 +11,6 @@ const FixedWrapper = styled.div`
     left: 0;
     width: 100%;
     height: 6rem;
-
     @media ${props => props.theme.mediaQueries.small}{
         display:none;
     }
@@ -28,6 +27,7 @@ const Navbar = () => {
                 <Wrapper>
                     <Logo />
                     <NavItems />
+                    
                 </Wrapper>
             </Container>
         </FixedWrapper>
