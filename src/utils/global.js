@@ -37,6 +37,7 @@ export default createGlobalStyle`
         font-family: 'Roboto', sans-serif;
         font-weight: 400;
         line-height: 1.6; 
+        background-color: #ECEFF1;
     }
     a, input, button, textarea{
         outline: none;

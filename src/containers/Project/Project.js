@@ -7,8 +7,13 @@ const moviesService = new Movies();
 
 export class Project extends Component {
     static propTypes = {
-
     }
+    constructor(props) {
+        super(props);
+        this.state = {
+            genres:[]
+        };
+      }
     componentDidMount() {
         // covidServices.getWorlCoviddData().then(res=>{
         //     console.log(res," resposnses dafda")
@@ -17,6 +22,7 @@ export class Project extends Component {
         // })
         moviesService.getAllGenres().then(res=>{
             console.log(res);
+            this.state.genres = res.data.genres
         }).catch(e=>{
             console.log(e)
         })
@@ -27,7 +33,11 @@ export class Project extends Component {
     render() {
         return (
             <div>
-                    
+                   {this.state.genres.map(genre=>{
+                       return(
+                           <p>{genre.name}</p>
+                       )
+                   })}
             </div>
         )
     }
