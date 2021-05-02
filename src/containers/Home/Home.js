@@ -15,6 +15,11 @@ const Wrapper = styled.div`
     background-color: #fff;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 `
+const MovieName = styled.p`
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    
+`
 class Home extends Component {
     static propTypes = {
 
@@ -47,7 +52,7 @@ class Home extends Component {
                             <div class="md:flex p-3">
                                 <div class="">
                                     <img class="w-full h-100 object-cover rounded-lg shadow-sm" src={process.env.REACT_APP_IMAGE_URL+movies.poster_path} alt="Man looking at item at a store" />
-                                    <p></p>
+                                    <MovieName>{movies.original_title}</MovieName>
                                 </div>
                             </div>
                         </div>
