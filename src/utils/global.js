@@ -24,8 +24,9 @@ export default createGlobalStyle`
         --color-mainLight: ${props => props.theme.colors.mainLight};
         --color-mainLighter: ${props => props.theme.colors.mainLighter};
         --color-text: ${props => props.theme.colors.textColor};
-        --color-white: ${props => props.theme.colors.whiteColor};
+        --color-white: ${props => props.theme.colors.white};
         --shadow: ${props => props.theme.colors.shadow};
+        --color-starBackground: ${props => props.theme.colors.starBackGround};
         @media ${props => props.theme.mediaQueries.small} {
         font-size: 60%;
         }
@@ -37,7 +38,8 @@ export default createGlobalStyle`
         font-family: 'Roboto', sans-serif;
         font-weight: 400;
         line-height: 1.6; 
-        background-color: #ECEFF1;
+        background: #ffffff;
+        overflow-x:hidden;
     }
     a, input, button, textarea{
         outline: none;

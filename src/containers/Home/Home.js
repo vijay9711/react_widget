@@ -1,25 +1,19 @@
 import React, { Component } from 'react'
 import styled from "styled-components";
-import Button from "../../Widgets/Button/Button.js";
+// import Button from "../../Widgets/Button/Button.js";
 import {Movies} from "../../Services/MoviesServices/Movies.js";
-
+import Rating from "../../Widgets/Rating/Rating.js";
+import { ThemeProvider } from "styled-components";
 
 const moviesService = new Movies();
 
-const Wrapper = styled.div`
-    display: flex;
-    max-width: 24rem;
-    margin: 0 auto;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    background-color: #fff;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-`
 const MovieName = styled.p`
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    
+    margin:.5rem 0rem;
+    color: var(--color-white);
 `
+
 class Home extends Component {
     static propTypes = {
 
@@ -27,11 +21,12 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            trandingMovie: []
+            trandingMovie: [],
+            page:1
         }
     }
     componentDidMount() {
-        moviesService.getTrandingMovies().then(res=>{
+        moviesService.getTrandingMovies(this.state.page).then(res=>{
             console.log(res);
             this.setState({ trandingMovie: res.data.results })
         }).catch(e=>{
@@ -39,22 +34,29 @@ class Home extends Component {
         })
         console.log("Home")
     }
-    
+    getRatingBG = (rating) =>{
+        return {
+            bg: `linear-gradient(90deg, var(--color-starBackground) calc(${rating} / 10 * 100%), var(--color-white) calc(${rating} / 10 * 100%))`
+        }
+    }
 
     render() {
         const trandingMovies = this.state.trandingMovie;  
         console.log(trandingMovies, " tranding")
         return (
-            <div className="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 lg:-mx-2 xl:-mx-2">
-                {trandingMovies.map(movies=>{
+            <div className="flex flex-wrap justify-between overflow-hidden sm:-mx-2 lg:-mx-2 xl:-mx-2">
+                {trandingMovies.map((movies,index)=>{
                     return(
-                        <div class="bg-white rounded-xl border-1 shadow-lg overflow-hidden h-100 lg:w-1/5 md:w-1/4 sm:w-50 m-10">
-                            <div class="md:flex p-3">
-                                <div class="">
-                                    <img class="w-full h-100 object-cover rounded-lg shadow-sm" src={process.env.REACT_APP_IMAGE_URL+movies.poster_path} alt="Man looking at item at a store" />
-                                    <MovieName>{movies.original_title}</MovieName>
-                                </div>
+                        <div class="group bg-main rounded-2xl shadow:lg border-1 overflow-hidden lg:w-1/5 md:w-1/4 sm:w-50 m-10 hover:shadow-mainColorShadow hover:bg-white duration-500">
+                            <img class="w-full h-6/6 object-cover rounded-lg shadow-xl" src={process.env.REACT_APP_IMAGE_URL+movies.poster_path} alt="Man looking at item at a store" />
+                            <div className="p-5">
+                                <ThemeProvider theme={this.getRatingBG(movies.vote_average)}>
+                                    <Rating id={index+'rating'}/>
+                                </ThemeProvider>
+                                <span className="text-xl float-right font-bold text-white group-hover:text-main group-hover:font-bold">{movies.vote_average}</span>
                             </div>
+                            <p className="px-5 py-3 font-medium text-lg text-white group-hover:text-main group-hover:font-bold">{movies.original_title}</p>
+                            
                         </div>
                     )
                 })}

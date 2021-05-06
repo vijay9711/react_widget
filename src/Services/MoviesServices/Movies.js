@@ -9,8 +9,8 @@ export class Movies{
         const api = `${url}/genre/movie/list?api_key=${apiKey}`
         return apiHelper.get(api);
     }
-    getTrandingMovies = () =>{
-        const api = `${url}/trending/movie/day?api_key=${apiKey}`
+    getTrandingMovies = (page) =>{
+        const api = `${url}/trending/movie/day?api_key=${apiKey}&page=${page}&size=10`
         return apiHelper.get(api); 
     }
 }

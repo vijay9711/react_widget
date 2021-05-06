@@ -1,12 +1,14 @@
 const theme = {
     colors: {
-        main: '#003459',
-        mainDark: "#00171f",
-        mainLight: '#007EA7',
-        mainLighter: '#00A8E8',
+        main: '#131C35',
+        mainDark: "#05445E",
+        mainLight: '#455a64',
+        mainLighter: '#2E8BC0',
         textColor: '#333',
-        whiteColor: '#FFF',
-        shadow: 'rgba(0,0,0,.2)'
+        white: '#FFFFFF',
+        cardBG:"#E9E9E9",
+        shadow: 'rgba(0,0,0,.2)',
+        starBackGround:"#fc0"
     },
     mediaQueries: {
         smallest: `only screen and (max-width: 25em)`,

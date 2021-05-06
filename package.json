@@ -51,5 +51,5 @@
     "postcss-cli": "^8.3.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.4"
   },
-  "homepage":"http://vijay9711.github.io/react_widget" 
+  "homepage":"http://vijay9711.github.io/react_widget/" 
 }
