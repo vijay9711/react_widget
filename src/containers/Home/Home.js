@@ -26,7 +26,7 @@ class Home extends Component {
         }
     }
     componentDidMount() {
-        moviesService.getTrandingMovies(this.state.page).then(res=>{
+        moviesService.getTrandingMovies(this.state.page,'all').then(res=>{
             console.log(res);
             this.setState({ trandingMovie: res.data.results })
         }).catch(e=>{
@@ -39,7 +39,11 @@ class Home extends Component {
             bg: `linear-gradient(90deg, var(--color-starBackground) calc(${rating} / 10 * 100%), var(--color-white) calc(${rating} / 10 * 100%))`
         }
     }
+    getSelectedMovie = (event,movie,index) =>{
+        event.preventDefault();
+        console.log(movie.media_type, index);
 
+    }
     render() {
         const trandingMovies = this.state.trandingMovie;  
         console.log(trandingMovies, " tranding")
@@ -47,7 +51,7 @@ class Home extends Component {
             <div className="flex flex-wrap justify-between overflow-hidden sm:-mx-2 lg:-mx-2 xl:-mx-2">
                 {trandingMovies.map((movies,index)=>{
                     return(
-                        <div class="group bg-main rounded-2xl shadow:lg border-1 overflow-hidden lg:w-1/5 md:w-1/4 sm:w-50 m-10 hover:shadow-mainColorShadow hover:bg-white duration-500">
+                        <div onClick={(event)=>this.getSelectedMovie(event,movies,index)} class="group bg-main rounded-2xl shadow:lg border-1 overflow-hidden lg:w-1/5 md:w-1/4 sm:w-50 m-10 cursor-pointer hover:shadow-mainColorShadow hover:bg-white duration-500">
                             <img class="w-full h-6/6 object-cover rounded-lg shadow-xl" src={process.env.REACT_APP_IMAGE_URL+movies.poster_path} alt="Man looking at item at a store" />
                             <div className="p-5">
                                 <ThemeProvider theme={this.getRatingBG(movies.vote_average)}>
@@ -56,7 +60,6 @@ class Home extends Component {
                                 <span className="text-xl float-right font-bold text-white group-hover:text-main group-hover:font-bold">{movies.vote_average}</span>
                             </div>
                             <p className="px-5 py-3 font-medium text-lg text-white group-hover:text-main group-hover:font-bold">{movies.original_title}</p>
-                            
                         </div>
                     )
                 })}
