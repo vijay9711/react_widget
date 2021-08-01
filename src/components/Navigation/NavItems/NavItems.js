@@ -17,11 +17,11 @@ const NavItems = ({ mobile, clicked }) => {
     return (
         <Nav mobile={mobile}>
             <Ul mobile={mobile}>
-                <NavItem mobile={mobile} clicked={clicked} link="/">Home</NavItem>
-                <NavItem mobile={mobile} clicked={clicked} link="/todo">To-do List</NavItem>
+                <NavItem mobile={mobile} clicked={clicked} link="/">Movies</NavItem>
+                <NavItem mobile={mobile} clicked={clicked} link="/tv">TV</NavItem>
                 <NavItem mobile={mobile} clicked={clicked} link="/about">About</NavItem>
-                <NavItem mobile={mobile} clicked={clicked} link="/project">Project</NavItem>
-                <NavItem mobile={mobile} clicked={clicked} link="/contact">Contact</NavItem>
+                {/* <NavItem mobile={mobile} clicked={clicked} link="/project">Project</NavItem>
+                <NavItem mobile={mobile} clicked={clicked} link="/contact">Contact</NavItem> */}
             </Ul>
         </Nav>
     )

@@ -25,9 +25,9 @@ module.exports = {
       'lg':'1.6rem',
       'md':'1.4rem',
       'sm':'1rem',
-      'xl':"1.8rem",
-      '2xl':"2rem",
-      '4xl':'2.4rem'
+      'xl':"2rem",
+      '2xl':"2.5rem",
+      '4xl':'2.6rem'
     }
   },
   variants: {
