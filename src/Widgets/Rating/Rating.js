@@ -18,7 +18,7 @@ const RatingWrapper = styled.div`
 
 const Rating = () =>{
     return(
-        <RatingWrapper class="Stars" aria-label="Rating of this product is 2.3 out of 5."></RatingWrapper>
+        <RatingWrapper className="Stars" aria-label="Rating of this product is 2.3 out of 5."></RatingWrapper>
     )
 }
 

@@ -5,6 +5,8 @@ import {TrendingService} from "../../Services/MoviesServices/TrendingService.js"
 import Rating from "../../Widgets/Rating/Rating.js";
 import { ThemeProvider } from "styled-components";
 import MovieDetails from "../../Widgets/MovieDetail/MovieDetails.js";
+import Pagination from "../../Widgets/Pagination/Pagination.js";
+
 const trendingService = new TrendingService();
 
 const MovieName = styled.p`
@@ -21,23 +23,27 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            trandingMovie: [],
+            trendingMovies: [],
             page:1,
             selectedMovieId:"",
-            selectedMovieData:""
+            selectedMovieData:"",
+            totalPage:1000
         }
     }
     componentDidMount() {
-        trendingService.getTrendingMovies(this.state.page,'movie').then(res=>{
+        this.getTrendingMovies(this.state.page);
+        console.log("Home")
+    }
+    getTrendingMovies = (page) => {
+        trendingService.getTrendingMovies(page,'movie').then(res=>{
             console.log(res);
             res.data.results.map(item=>{
                 console.log(item.media_type)
             })
-            this.setState({ trandingMovie: res.data.results })
+            this.setState({ trendingMovies: res.data.results })
         }).catch(e=>{
             console.log(e)
         })
-        console.log("Home")
     }
     getRatingBG = (rating) =>{
         return {
@@ -46,21 +52,32 @@ class Home extends Component {
     }
     getSelectedMovie = (event,movie,index) =>{
         event.preventDefault();
-        this.setState({selectedMovieId: movie.id, selectedMovieData: movie})
+        this.setState({selectedMovieId: movie.id, selectedMovieData: movie});
         console.log(movie,this.selectedMovieData, "selected daaadadqw");
     }
+    onPageChange = (page) => {
+        console.log(page);
+        this.setState({page: page});
+        this.getTrendingMovies(page);
+    }
     render() {
-        const trendingMovies = this.state.trandingMovie;
+        // const trendingMovies = this.state.trendingMovie;
         const selectedMovieId = this.state.selectedMovieId; 
         const selectedMovieData = this.state.selectedMovieData; 
-        console.log(trendingMovies, " tranding")
+        const state = this.state;
+        console.log(state.trendingMovies, " trandinpnnn;nnn;nn;n;n;nn;n;g")
         return (
             <div className="">
-                {selectedMovieId === "" ? <div className="flex flex-wrap justify-between overflow-hidden sm:-mx-2 lg:-mx-2 xl:-mx-2">
-                    {trendingMovies.map((movies,index)=>{
+                {selectedMovieId === "" ? 
+                <div className="flex flex-wrap justify-between overflow-hidden sm:-mx-2 lg:-mx-2 xl:-mx-2">
+                    <div className="w-full">
+                        <Pagination currentPage={state.page} onPageChange={this.onPageChange} totalPage={state.totalPage}></Pagination>
+                    </div>
+                    {state.trendingMovies.map((movies,index)=>{
                         return(
-                            <div onClick={(event)=>this.getSelectedMovie(event,movies,index)} class="group bg-main rounded-2xl shadow:lg border-1 overflow-hidden lg:w-1/5 md:w-1/4 sm:w-50 m-10 cursor-pointer hover:shadow-mainColorShadow duration-500">
-                                <img class="w-full h-6/6 object-cover rounded-lg shadow-xl" src={process.env.REACT_APP_IMAGE_URL+movies.poster_path} alt="Man looking at item at a store" />
+                            <div key={index} onClick={(event)=>this.getSelectedMovie(event,movies,index)} className="group bg-main rounded-2xl shadow:lg border-1 overflow-hidden lg:w-1/5 md:w-1/4 sm:w-50 m-10 cursor-pointer hover:shadow-mainColorShadow duration-500">
+                                <img className="w-full h-6/6 object-cover rounded-lg shadow-xl" src={process.env.REACT_APP_IMAGE_URL+movies.poster_path} alt="Man looking at item at a store" />
+                                
                                 <div className="p-5">
                                     <ThemeProvider theme={this.getRatingBG(movies.vote_average)}>
                                         <Rating id={index+'rating'}/>

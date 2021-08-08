@@ -45,8 +45,8 @@ export class ToDo extends Component {
             <div className="flex flex-wrap justify-between overflow-hidden sm:-mx-2 lg:-mx-2 xl:-mx-2">
                 {trendingTvShows.map((movies,index)=>{
                     return(
-                        <div onClick={(event)=>this.getSelectedMovie(event,movies,index)} class="group bg-main rounded-2xl shadow:lg border-1 overflow-hidden lg:w-1/5 md:w-1/4 sm:w-50 m-10 cursor-pointer hover:shadow-mainColorShadow hover:bg-white duration-500">
-                            <img class="w-full h-6/6 object-cover rounded-lg shadow-xl" src={process.env.REACT_APP_IMAGE_URL+movies.poster_path} alt="Man looking at item at a store" />
+                        <div onClick={(event)=>this.getSelectedMovie(event,movies,index)} className="group bg-main rounded-2xl shadow:lg border-1 overflow-hidden lg:w-1/5 md:w-1/4 sm:w-50 m-10 cursor-pointer hover:shadow-mainColorShadow hover:bg-white duration-500">
+                            <img className="w-full h-6/6 object-cover rounded-lg shadow-xl" src={process.env.REACT_APP_IMAGE_URL+movies.poster_path} alt="Man looking at item at a store" />
                             <div className="p-5">
                                 <ThemeProvider theme={this.getRatingBG(movies.vote_average)}>
                                     <Rating id={index+'rating'}/>

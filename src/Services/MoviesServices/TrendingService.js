@@ -10,7 +10,7 @@ export class TrendingService{
         return apiHelper.get(api);
     }
     getTrendingMovies = (page,mediaType) =>{
-        const api = `${url}/trending/${mediaType}/day?api_key=${apiKey}`
+        const api = `${url}/trending/${mediaType}/day?api_key=${apiKey}&page=${page}&size=10`
         return apiHelper.get(api); 
     }
 }
