@@ -33,13 +33,13 @@ class Pagination extends React.Component{
     render(){
         const pageNumber = this.state.pageNumber
         return(
-            <div className="flex p-10">
-                <div className="flex">
+            <div className="flex px-10">
+                <div className="flex max-h-12">
                     <div className="bg-main w-14 h-14 rounded-full items-center text-center grid justify-items-center cursour-pointer" onClick={this.previousPage}>
                         <img src={next} className="transform rotate-90 w-5"></img> 
                     </div>
                     <div className="flex shadow-xl">
-                        <input className="w-10 h-full mx-4 items-center text-center m-auto rounded-lg" value={pageNumber} onChange={this.getPage} />
+                        <input className="w-10 h-full mx-4 items-center border-1 border-black text-center m-auto rounded-lg" value={pageNumber} onChange={this.getPage} />
                     </div>
                     <div className="bg-main w-14 h-14 rounded-full items-center text-center grid justify-items-center" onClick={this.nextPage}>
                         <img src={next} className="transform -rotate-90 w-5"></img>

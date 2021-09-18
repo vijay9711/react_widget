@@ -13,5 +13,9 @@ export class TrendingService{
         const api = `${url}/trending/${mediaType}/day?api_key=${apiKey}&page=${page}&size=10`
         return apiHelper.get(api); 
     }
+    searchMovie = (page,query) =>{
+        const api = `${url}/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=${page}&size=10`
+        return apiHelper.get(api);
+    }
 }
 export default TrendingService;

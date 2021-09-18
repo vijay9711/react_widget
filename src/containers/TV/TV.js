@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {TrendingService} from "../../Services/MoviesServices/TrendingService.js";
 import Rating from "../../Widgets/Rating/Rating.js";
 import { ThemeProvider } from "styled-components";
+import Pagination from "../../Widgets/Pagination/Pagination.js";
 
 const trendingService = new TrendingService;
 const MovieName = styled.p`
@@ -17,12 +18,18 @@ export class ToDo extends Component {
     constructor(props){
         super(props)
         this.state = {
-            page: 1,
-            trendingTvShows:[]
+            trendingTvShows:[],
+            page:1,
+            selectedMovieId:"",
+            selectedMovieData:"",
+            totalPage:1000
         }
     }
     componentDidMount(){
-        trendingService.getTrendingMovies(this.state.page,'tv').then(res=>{
+        this.getTrendingTvShows(this.state.page);
+    }
+    getTrendingTvShows = (currentPage) =>{
+        trendingService.getTrendingMovies(currentPage,'tv').then(res=>{
             res.data.results.map(item=>{
                 console.log(item.media_type)
             })
@@ -38,11 +45,24 @@ export class ToDo extends Component {
         event.preventDefault();
         console.log(movie.media_type, index);
     }
+    onPageChange = (page) => {
+        console.log(page);
+        this.setState({page: page});
+        this.getTrendingTvShows(page);
+    }
     render() {
         const trendingTvShows = this.state.trendingTvShows;  
+        const state = this.state;
         console.log(trendingTvShows, " tranding")
         return (
             <div className="flex flex-wrap justify-between overflow-hidden sm:-mx-2 lg:-mx-2 xl:-mx-2">
+                <div className="w-full align-items-right ">
+                    <div className="w-sm-6/6 w-lg-1/6 h-32 ml-auto">
+                        <div className="ml-auto fixed">
+                            <Pagination  currentPage={state.page} onPageChange={this.onPageChange} totalPage={state.totalPage}></Pagination>
+                        </div>
+                    </div>
+                </div>
                 {trendingTvShows.map((movies,index)=>{
                     return(
                         <div onClick={(event)=>this.getSelectedMovie(event,movies,index)} className="group bg-main rounded-2xl shadow:lg border-1 overflow-hidden lg:w-1/5 md:w-1/4 sm:w-50 m-10 cursor-pointer hover:shadow-mainColorShadow hover:bg-white duration-500">
@@ -53,7 +73,7 @@ export class ToDo extends Component {
                                 </ThemeProvider>
                                 <span className="text-xl float-right font-bold text-white group-hover:text-main group-hover:font-bold">{movies.vote_average}</span>
                             </div>
-                            <p className="px-5 py-3 font-medium text-lg text-white group-hover:text-main group-hover:font-bold">{movies.original_title}</p>
+                            <p className="px-5 py-3 font-medium text-lg text-white group-hover:text-main group-hover:font-bold">{movies.original_name}</p>
                         </div>
                     )
                 })}

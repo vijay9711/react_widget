@@ -25,7 +25,7 @@ class MovieDetails extends Component{
     render(){
         return(
             <Note className="Note">
-                {/* <img src="../../assets/movies/arrow.png" alt="back" /> */}
+                <p>BACK</p>
                 <h1>PAGE UNDER CONSTRUCTION</h1>
             </Note>
         )
