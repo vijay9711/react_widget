@@ -1,5 +1,6 @@
 # Getting Started with Create React App
-
+### Before that checkout the live site here
+https://vijay9711.github.io/react_widget/
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
