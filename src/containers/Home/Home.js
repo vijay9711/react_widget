@@ -6,6 +6,7 @@ import Rating from "../../Widgets/Rating/Rating.js";
 import { ThemeProvider } from "styled-components";
 import MovieDetails from "../../Widgets/MovieDetail/MovieDetails.js";
 import FilterBar from "../../Widgets/FilterBar/FilterBar.js";
+import NoMovies from "../../assets/movies/noMovies.svg"
 
 const trendingService = new TrendingService();
 
@@ -60,20 +61,22 @@ class Home extends Component {
         console.log(page, this.state.searchQuery);
         this.setState({page: page});
         if(this.state.searchQuery){
-            this.searchedText(this.state.searchQuery);
+            this.searchedText(this.state.searchQuery,page);
         }else{
             this.getTrendingMovies(page);
         }
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
-    searchedText=(query)=>{
+    searchedText=(query,page)=>{
+        console.log(query, "query");
         this.setState({searchQuery: query});
         if(query){
-            trendingService.searchMovie(this.state.page, query).then(res=>{
+            trendingService.searchMovie(page, query).then(res=>{
                 console.log(res, " serach result")
                 this.setState({ trendingMovies: res.data.results })
             }).catch(e=>{
                 console.log(e);
+                this.setState({trendingMovies:[]})
             })
         }else{
             this.getTrendingMovies(this.state.page);
@@ -101,9 +104,10 @@ class Home extends Component {
                             currentPage={state.page} 
                             onPageChange={this.onPageChange} 
                             totalPage={state.totalPage}
-                            search={this.searchedText}
+                            search={(event)=>this.searchedText(event,state.page)}
                         />
                     {/* </div> */}
+                    {state.trendingMovies.length > 0 ? 
                     <div id='movie-section' className="flex flex-wrap justify-between overflow-hidden sm:-mx-2 lg:-mx-2 xl:-mx-2 pt-36">
                         {state.trendingMovies.map((movies,index)=>{
                             return(
@@ -119,7 +123,9 @@ class Home extends Component {
                                 </div>
                             )
                         })}
-                    </div>
+                    </div>:
+                    <img className="m-auto" src={NoMovies}></img>
+                    }
                 </div>
                 :
                 <MovieDetails movieData={selectedMovieData}></MovieDetails>

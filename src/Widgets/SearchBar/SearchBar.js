@@ -18,6 +18,10 @@ const SearchInputWrapper = styled.div`
     height: 4rem;
     margin-right: 3rem;
     display: flex;
+    padding-right: 15px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
 `
 const SearchIconImg = styled.img`
     width: 30px;
@@ -71,7 +75,7 @@ class SearchBar extends Component{
         return(
             <SearchBox>
                 <SearchInputWrapper className='p-0 '>
-                    <SearchInput className='w-80' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
+                    <SearchInput placeholder="Search movie name" className='w-80' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
                     <SearchIconImg src={SearchIcon}></SearchIconImg>
                 </SearchInputWrapper>
             </SearchBox>

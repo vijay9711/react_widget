@@ -7,11 +7,11 @@ const FilterBarWrapper = styled.div`
     display: flex;
     margin-left: auto;
     position: fixed;
-    background-color: grey;
+    background-color: white;
 `
 const Container = styled.div`
     display: flex;
-    align-self: center
+    align-self: center;
 `
 class FilterBar extends Component{
     constructor(props){
@@ -37,14 +37,13 @@ class FilterBar extends Component{
             //         </div>
             //     </div>
             // </div>
-        <FilterBarWrapper className="w-full h-32 px-3">
+            <FilterBarWrapper className="w-full h-32 px-3">
                 <Container className='ml-auto'>
                     <Pagination currentPage={this.props.currentPage} onPageChange={this.onPageChange} totalPage={this.props.totalPage}></Pagination>
                 </Container>
                 <Container className='d-flex self-center'>
                     <SearchBar searchResult={this.searchResult} />
                 </Container>
-                
             </FilterBarWrapper>
         )
     }
