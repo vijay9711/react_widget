@@ -15,7 +15,6 @@ const SearchInputWrapper = styled.div`
     border: 0px;
     border-radius: 30px;
     background-color: white;
-    height: 4rem;
     margin-right: 3rem;
     display: flex;
     padding-right: 15px;
@@ -74,8 +73,8 @@ class SearchBar extends Component{
     render(){
         return(
             <SearchBox>
-                <SearchInputWrapper className='p-0 '>
-                    <SearchInput placeholder="Search movie name" className='w-80' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
+                <SearchInputWrapper className='p-0 w-full'>
+                    <SearchInput placeholder="Search movie name" className='w-60 h-30' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
                     <SearchIconImg src={SearchIcon}></SearchIconImg>
                 </SearchInputWrapper>
             </SearchBox>

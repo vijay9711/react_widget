@@ -29,13 +29,24 @@ class Home extends Component {
             selectedMovieId:"",
             selectedMovieData:"",
             totalPage:1000,
-            searchQuery:''
+            searchQuery:'',
+            genres:[]
         }
     }
     componentDidMount() {
+        this.getAllGenres();
         this.getTrendingMovies(this.state.page);
-        console.log("Home")
     }
+    getAllGenres = () => {
+        trendingService.getAllGenres().then(res=>{
+            console.log(res, "all genres");
+            this.setState({genres:res.data.genres})
+
+        }).catch(e=>{
+            console.log(e);
+        })
+    }
+
     getTrendingMovies = (page) => {
         trendingService.getTrendingMovies(page,'movie').then(res=>{
             console.log(res);
@@ -104,6 +115,7 @@ class Home extends Component {
                             currentPage={state.page} 
                             onPageChange={this.onPageChange} 
                             totalPage={state.totalPage}
+                            genres={state.genres}
                             search={(event)=>this.searchedText(event,state.page)}
                         />
                     {/* </div> */}
