@@ -5,8 +5,9 @@ const GenresWrapper = styled.div`
     display: flex;
     overflow-x: scroll;
     width: 100%;
-    height: 100%;
+    height: 50px;
     margin: 10px 0px;
+    padding: 5px 0px;
 `
 const Genre = styled.label`
     display: flex;

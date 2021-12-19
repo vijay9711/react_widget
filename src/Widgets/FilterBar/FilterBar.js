@@ -34,13 +34,6 @@ class FilterBar extends Component{
     }
     render(){
         return(
-            // <div className="w-full align-items-right ">
-            //     <div className="h-32 w-sm-6/6 w-md-1/6 w-lg-1/6  ml-auto">
-            //         <div className="ml-auto fixed">
-            //             <Pagination  currentPage={this.props.currentPage} onPageChange={this.onPageChange} totalPage={this.props.totalPage}></Pagination>
-            //         </div>
-            //     </div>
-            // </div>
             <FilterBarWrapper className="w-full h-32 px-3 md:d-block">
                 <Container className='sm:w-full md:w-full lg:w-8/12 ml-auto h-20' >
                     <Genres genres={this.props.genres} onGenresSelected={this.onGenresSelected}/>
