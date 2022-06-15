@@ -6,7 +6,7 @@ import TV from "./containers/TV/TV";
 import About from "./containers/About/About";
 import Project from "./containers/Project/Project";
 import Contact from "./containers/Contact/Contant";
-
+import FAQ from "./containers/FAQ/FAQ";
 
 const App = () => {
     return (
@@ -17,6 +17,8 @@ const App = () => {
                 <Route exact path="/about" component={About}></Route>
                 <Route exact path="/Project" component={Project}></Route>
                 <Route exact path="/Contact" component={Contact}></Route>
+
+                <Route exact path="/faq" component={FAQ}></Route>
                 <Redirect to="/"></Redirect>
             </Switch>
         </Layout>

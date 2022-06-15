@@ -20,6 +20,7 @@ const NavItems = ({ mobile, clicked }) => {
                 <NavItem mobile={mobile} clicked={clicked} link="/">Movies</NavItem>
                 <NavItem mobile={mobile} clicked={clicked} link="/tv">TV</NavItem>
                 <NavItem mobile={mobile} clicked={clicked} link="/about">About</NavItem>
+                <NavItem mobile={mobile} clicked={clicked} link="/faq">FAQ</NavItem>
                 {/* <NavItem mobile={mobile} clicked={clicked} link="/project">Project</NavItem>
                 <NavItem mobile={mobile} clicked={clicked} link="/contact">Contact</NavItem> */}
             </Ul>
