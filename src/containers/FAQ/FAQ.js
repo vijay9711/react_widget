@@ -72,10 +72,10 @@ class FAQ extends Component {
                 var questionDetail = document.getElementById(`question${question.id}`);
                 // element.classList.add("hide-discription");
                 // element.classList.add("show-discription");
+                questionWrapper1.classList.toggle('expanded');
                 questionDiscription.classList.toggle("expanded");
                 questionDetail.classList.toggle('expanded');
                 questionIcon1.classList.toggle('expanded');
-                questionWrapper1.classList.toggle('expanded');
             }
             else{
                 console.log(question.id, 'in else')
@@ -85,10 +85,10 @@ class FAQ extends Component {
                 var questionDetail = document.getElementById(`question${question.id}`);
                 // element.classList.add("hide-discription");
                 // element.classList.add("show-discription");
+                questionWrapper1.classList.remove('expanded');
                 questionDiscription.classList.remove("expanded");
                 questionDetail.classList.remove('expanded');
                 questionIcon1.classList.remove('expanded');
-                questionWrapper1.classList.remove('expanded');
             }
         })
         this.setState({tquestions: faq});
