@@ -33,8 +33,8 @@ class Pagination extends React.Component{
     render(){
         const pageNumber = this.state.pageNumber
         return(
-            <div className="flex px-10">
-                <div className="flex max-h-12">
+            <div className="flex ">
+                <div className="flex">
                     <div className="bg-main w-14 h-14 rounded-full items-center text-center grid justify-items-center cursour-pointer" onClick={this.previousPage}>
                         <img src={next} className="cursor-pointer transform rotate-90 w-5"></img> 
                     </div>

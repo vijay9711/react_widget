@@ -15,7 +15,9 @@ module.exports = {
       textColor: '#333',
       white: '#FFFFFF',
       cardBackground:"#cfd8dc",
-      cardBG:"#E9E9E9"
+      cardBG:"#E9E9E9",
+      overlay:"#ffffff80",
+      loadingBg:"#ffffff50"
     },
     boxShadow:{
       default:"0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",

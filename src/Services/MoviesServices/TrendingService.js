@@ -9,8 +9,8 @@ export class TrendingService{
         const api = `${url}/genre/movie/list?api_key=${apiKey}`
         return apiHelper.get(api);
     }
-    getTrendingMovies = (page,mediaType) =>{
-        const api = `${url}/trending/${mediaType}/day?api_key=${apiKey}&page=${page}&size=10`
+    getTrendingMovies = (page,mediaType, size, genreId) =>{
+        const api = `${url}/trending/${mediaType}/day?api_key=${apiKey}&page=${page}&size=${size}&with_genres=${genreId}`
         return apiHelper.get(api); 
     }
     searchMovie = (page,query) =>{

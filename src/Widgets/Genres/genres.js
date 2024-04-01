@@ -3,16 +3,17 @@ import styled from "styled-components";
 
 const GenresWrapper = styled.div`
     display: flex;
-    overflow-x: scroll;
+    ${'' /* overflow-x: scroll; */}
+    flex-wrap:wrap;
     width: 100%;
-    height: 50px;
+    height: auto;
     margin: 10px 0px;
-    padding: 5px 0px;
+    padding: 4px 0px;
 `
 const Genre = styled.label`
     display: flex;
     flex: none;
-    margin: 0px 10px;
+    margin: 5px;
     border: 1px solid var(--color-main);
     padding: 5px 15px;
     align-items: center;

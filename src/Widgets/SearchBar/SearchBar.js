@@ -3,7 +3,7 @@ import styled from 'styled-components';
  import SearchIcon from "../../assets/search/search.gif";
 const SearchBox = styled.div`
     max-width: 30rem;
-
+    margin-left: auto;
 `
 const SearchInput = styled.input`
     height: 4rem;
@@ -15,9 +15,9 @@ const SearchInputWrapper = styled.div`
     border: 0px;
     border-radius: 30px;
     background-color: white;
-    margin-right: 3rem;
+    ${'' /* margin-right: 3rem; */}
     display: flex;
-    padding-right: 15px;
+    ${'' /* padding-right: 15px; */}
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
@@ -74,7 +74,7 @@ class SearchBar extends Component{
         return(
             <SearchBox>
                 <SearchInputWrapper className='p-0 w-full'>
-                    <SearchInput placeholder="Search movie name" className='w-60 h-30' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
+                    <SearchInput placeholder="Search " className='w-60 h-30' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
                     <SearchIconImg src={SearchIcon}></SearchIconImg>
                 </SearchInputWrapper>
             </SearchBox>

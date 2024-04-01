@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const APP_URL = process.env.REACT_APP_URL;
+// const APP_URL = process.env.REACT_APP_URL;
 const BASE_URL = "";
 
 export class ApiHelper{
     get(uri) {
-        console.log(APP_URL," url")
+        // console.log(APP_URL," url")
         return axios.get( uri, {
             // headers:this.getHeaders(),
             withCredentials: false
