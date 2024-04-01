@@ -6,7 +6,6 @@ import Rating from "../../Widgets/Rating/Rating.js";
 import { ThemeProvider } from "styled-components";
 import MovieDetails from "../../Widgets/MovieDetail/MovieDetails.js";
 import FilterBar from "../../Widgets/FilterBar/FilterBar.js";
-import NoMovies from "../../assets/movies/noMovies.svg"
 import Loader from '../../Widgets/Loader.js';
 
 const trendingService = new TrendingService();

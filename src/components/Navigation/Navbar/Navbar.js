@@ -27,7 +27,6 @@ const Navbar = () => {
                 <Wrapper>
                     <Logo />
                     <NavItems />
-                    
                 </Wrapper>
             </Container>
         </FixedWrapper>

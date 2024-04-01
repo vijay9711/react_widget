@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Layout from "./hoc/layout/Layout.js";
 import Home from "./containers/Home/Home";
 import TV from "./containers/TV/TV";
@@ -11,14 +11,14 @@ import Contact from "./containers/Contact/Contant";
 const App = () => {
     return (
         <Layout>
-            <Switch>
-                <Route exact path="/" component={Home}></Route>
-                <Route exact path="/tv" component={TV}></Route>
-                <Route exact path="/about" component={About}></Route>
-                <Route exact path="/Project" component={Project}></Route>
-                <Route exact path="/Contact" component={Contact}></Route>
-                <Redirect to="/"></Redirect>
-            </Switch>
+                <Routes>
+                    <Route path="/" element={<Home />}></Route>
+                    <Route path="/tv" element={<TV />}></Route>
+                    <Route path="/about" element={<About />}></Route>
+                    <Route path="/Project" element={<Project />}></Route>
+                    <Route path="/Contact" element={<Contact />}></Route>
+                    <Route path="*" to="/"></Route>
+                </Routes>
         </Layout>
     )
 }
