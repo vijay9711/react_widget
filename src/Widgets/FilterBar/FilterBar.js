@@ -15,7 +15,9 @@ const Container = styled.div`
     display: flex;
     ${'' /* align-self: center; */}
     height: -webkit-fill-available;
+    ${'' /* margin: 0px 10px; */}
 `
+
 class FilterBar extends Component {
     constructor(props) {
         super(props);
@@ -37,37 +39,37 @@ class FilterBar extends Component {
     }
     render() {
         return (
-            <FilterBarWrapper className="w-full pl-5 pr-12 md:d-block flex-wrap">
+            <FilterBarWrapper className="w-full md:d-block flex-wrap sm:pb-3 md:pb-3">
                 {/* <div className="grid grid-cols-1"> */}
-                    <div className="grid grid-cols-2 justify-end w-full p-5">
-                        <div className="col-span-1 text-xl">
-                            Trending movies
-                        </div>
-                        <div className="flex align-baseline items-center justify-between">
-                            {/* <Container>
-                                <form class="max-w-sm mx-auto flex">
-                                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Genre</label>
-                                    <select id="countries" onChange={(event)=>{this.onGenresSelected(event)}} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected>Choose a country</option>
-                                        {
-                                            this.props.genres.map((genre,index)=>{
-                                                return (
-                                                    <option key={genre.id} value={genre.id}>{genre.name}</option>
-                                                )
-                                               
-                                            })
-                                        }
-                                    </select>
-                                </form>
-                            </Container> */}
-                            <Container className='my-auto h-auto'>
-                                <Pagination className="ml-auto" currentPage={this.props.currentPage} onPageChange={this.onPageChange} totalPage={this.props.totalPage}></Pagination>
-                            </Container>
-                            <Container className='d-flex w-fit ml-5'>
-                                <SearchBar searchResult={this.searchResult} />
-                            </Container>
-                        </div>
+                <div className="grid lg:grid-cols-2 lg:grid-rows-1 sm:grid-cols-1 sm:grid-rows-2 lg:justify-end w-full p-5 xl:px-32 xl:mx-48">
+                    <div className="lg:col-span-1 lg:justify-start sm:grid-cols-2 flex flex-wrap sm:justify-between sm:w-full">
+                        <span className="text-2xl font-bold text-main m-0 flex items-center">Trending movies</span>
+                        <Container className="my-auto sm:ml-auto lg:ml-3 md:ml-auto">
+                            <form class="max-w-sm m-auto flex">
+                                {/* <label for="countries" class="block mb-2 text-lg font-bold text-main my-auto mr-5">Genre</label> */}
+                                <select id="countries" onChange={(event) => { this.onGenresSelected(event) }} class="bg-gray-50 border border-main text-main text-md rounded-lg focus:ring-0 focus:border-blue-500 block w-full p-1 h-12 my-auto">
+                                    <option selected>All Genre</option>
+                                    {
+                                        this.props.genres.map((genre, index) => {
+                                            return (
+                                                <option key={genre.id} value={genre.id}>{genre.name}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </form>
+                        </Container>
                     </div>
+                    <div className="lg:col-span-1 lg:justify-end sm:grid-cols-2 flex flex-wrap sm:justify-between sm:w-full sm:pt-5">
+
+                        <Container className='my-auto mr-3 h-auto'>
+                            <Pagination className="ml-auto" currentPage={this.props.currentPage} onPageChange={this.onPageChange} totalPage={this.props.totalPage}></Pagination>
+                        </Container>
+                        <Container className='d-flex w-fit ml-5'>
+                            <SearchBar searchResult={this.searchResult} />
+                        </Container>
+                    </div>
+                </div>
                 {/* </div> */}
 
 

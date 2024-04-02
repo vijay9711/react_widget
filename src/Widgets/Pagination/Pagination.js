@@ -25,7 +25,7 @@ class Pagination extends React.Component{
     getPage = (event) => {
         // event.preventDefault();
         console.log(this.props)
-        if(this.props.totalPage > event.target.value){  
+        if(this.props.totalPage >= event.target.value){  
             this.setState({pageNumber: event.target.value});
             this.props.onPageChange(event.target.value);
         }
@@ -34,15 +34,15 @@ class Pagination extends React.Component{
         const pageNumber = this.state.pageNumber
         return(
             <div className="flex ">
-                <div className="flex">
-                    <div className="bg-main w-14 h-14 rounded-full items-center text-center grid justify-items-center cursour-pointer" onClick={this.previousPage}>
-                        <img src={next} className="cursor-pointer transform rotate-90 w-5"></img> 
+                <div className="flex justify-center items-center">
+                    <div className="bg-main lg:w-14 lg:h-14 sm:w-10 sm:h-10 rounded-full items-center text-center grid justify-items-center cursour-pointer" onClick={this.previousPage}>
+                        <img src={next} className="cursor-pointer transform rotate-90 lg:w-5 sm:w-3"></img> 
                     </div>
                     <div className="flex shadow-xl">
-                        <input className="w-10 h-full mx-4 items-center border-1 border-black text-center m-auto rounded-lg" value={pageNumber} onChange={this.getPage} />
+                        <input className="lg:w-14 lg:h-14 sm:w-10 sm:h-10  mx-4 items-center border-1 border-black text-center m-auto rounded-lg text-lg" value={pageNumber} onChange={this.getPage} />
                     </div>
-                    <div className="bg-main w-14 h-14 rounded-full items-center text-center grid justify-items-center cursor-pointer" onClick={this.nextPage}>
-                        <img src={next} className="transform -rotate-90 w-5"></img>
+                    <div className="bg-main lg:w-14 lg:h-14 sm:w-10 sm:h-10  rounded-full items-center text-center grid justify-items-center cursor-pointer" onClick={this.nextPage}>
+                        <img src={next} className="transform -rotate-90 lg:w-5 sm:w-3"></img>
                     </div>
                 </div>
             </div>

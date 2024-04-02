@@ -6,12 +6,12 @@ const SearchBox = styled.div`
     margin-left: auto;
 `
 const SearchInput = styled.input`
-    height: 4rem;
+    height: 2em;
     border-radius: 30px;
     font-size: 16px;
-    padding: 15px;
 `
 const SearchInputWrapper = styled.div`
+    padding:5px;
     border: 0px;
     border-radius: 30px;
     background-color: white;
@@ -74,7 +74,7 @@ class SearchBar extends Component{
         return(
             <SearchBox>
                 <SearchInputWrapper className='p-0 w-full'>
-                    <SearchInput placeholder="Search " className='w-60 h-30' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
+                    <SearchInput placeholder="Search " className='m-auto ml-3' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
                     <SearchIconImg src={SearchIcon}></SearchIconImg>
                 </SearchInputWrapper>
             </SearchBox>

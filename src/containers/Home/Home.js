@@ -107,7 +107,7 @@ class Home extends Component {
                 }
 
                 {selectedMovieId === "" ?
-                    <div className='px-5'>
+                    <div className='flex flex-wrap'>
                         <div className="w-full align-items-right">
                             <FilterBar
                                 currentPage={state.page}
@@ -119,18 +119,18 @@ class Home extends Component {
                             />
                         </div>
                         {state.trendingMovies.length > 0 ?
-                            <div id='movie-section' className="justify-between overflow-auto grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 pt-24">
+                            <div id='movie-section' className="justify-between overflow-auto grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 lg:pt-32 m-auto sm:pt-56">
                                 {state.trendingMovies.map((movies, index) => {
                                     return (
-                                        <div key={index} onClick={(event) => this.getSelectedMovie(event, movies, index)} className="group bg-main rounded-2xl shadow:lg border-1 overflow-hidden m-5 cursor-pointer hover:shadow-mainColorShadow duration-500">
-                                            <img className="w-full rounded-lg shadow-xl" src={process.env.REACT_APP_IMAGE_URL + movies.poster_path} alt="poster" />
+                                        <div key={index} onClick={(event) => this.getSelectedMovie(event, movies, index)} className="group bg-main rounded-xl hover:bg-white hover:text-main shadow:lg border-1 overflow-hidden m-5 cursor-pointer hover:shadow-mainColorShadow duration-500">
+                                            <img className="w-full rounded-lg" src={process.env.REACT_APP_IMAGE_URL + movies.poster_path} alt="poster" />
                                             <div className="p-5">
                                                 <ThemeProvider theme={this.getRatingBG(movies.vote_average)}>
                                                     <Rating id={index + 'rating'} />
                                                 </ThemeProvider>
-                                                <span className="text-lg float-right font-bold text-white group-hover:text-xl group-hover:font-bold">{movies.vote_average}</span>
+                                                <span className="text-lg float-right font-bold text-white group-hover:text-main group-hover:text-xl group-hover:font-bold">{movies.vote_average}</span>
                                             </div>
-                                            <p className="px-5 py-3 font-medium text-lg truncate text-white group-hover:text-xl group-hover:font-bold">{movies.original_title}</p>
+                                            <p className="px-5 py-1 font-bold text-lg truncate text-white group-hover:text-main group-hover:text-xl group-hover:font-bold">{movies.original_title}</p>
                                         </div>
                                     )
                                 })}
@@ -138,7 +138,6 @@ class Home extends Component {
                             <div className='w-screen h-screen flex flex-col relative'>
                                 <iframe className='m-auto' src="https://lottie.host/embed/9e937372-61ff-4bc0-8227-dea43845f9b3/P0VSYOQtpM.json"></iframe>
                             </div>
-
                         }
                     </div>
                     :
