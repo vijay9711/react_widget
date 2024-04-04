@@ -35,7 +35,7 @@ class FilterBar extends Component {
     }
     onGenresSelected = (data) => {
         console.log(data.target.value, " genres");
-        this.props.selectedGenre(data.target.value);
+        this.props.selectedGenre(data.target.value.toString());
     }
     render() {
         return (
@@ -43,12 +43,14 @@ class FilterBar extends Component {
                 {/* <div className="grid grid-cols-1"> */}
                 <div className="grid lg:grid-cols-2 lg:grid-rows-1 sm:grid-cols-1 sm:grid-rows-2 lg:justify-end w-full p-5 xl:px-32 xl:mx-48">
                     <div className="lg:col-span-1 lg:justify-start sm:grid-cols-2 flex flex-wrap sm:justify-between sm:w-full">
-                        <span className="text-2xl font-bold text-main m-0 flex items-center">Trending movies</span>
-                        <Container className="my-auto sm:ml-auto lg:ml-3 md:ml-auto">
+                        <span className="text-2xl font-bold text-main m-0 flex items-center">{this.props.title}</span>
+                        {
+                            this.props.title != "Trending Now" ? 
+                            <Container className="my-auto sm:ml-auto lg:ml-3 md:ml-auto">
                             <form class="max-w-sm m-auto flex">
                                 {/* <label for="countries" class="block mb-2 text-lg font-bold text-main my-auto mr-5">Genre</label> */}
                                 <select id="countries" onChange={(event) => { this.onGenresSelected(event) }} class="bg-gray-50 border border-main text-main text-md rounded-lg focus:ring-0 focus:border-blue-500 block w-full p-1 h-12 my-auto">
-                                    <option selected>All Genre</option>
+                                    <option selected value={"All"}>All Genre</option>
                                     {
                                         this.props.genres.map((genre, index) => {
                                             return (
@@ -58,7 +60,9 @@ class FilterBar extends Component {
                                     }
                                 </select>
                             </form>
-                        </Container>
+                        </Container>:null
+                        }
+                        
                     </div>
                     <div className="lg:col-span-1 lg:justify-end sm:grid-cols-2 flex flex-wrap sm:justify-between sm:w-full sm:pt-5">
 

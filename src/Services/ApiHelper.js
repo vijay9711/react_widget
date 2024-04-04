@@ -2,23 +2,22 @@ import axios from 'axios';
 
 // const APP_URL = process.env.REACT_APP_URL;
 const BASE_URL = "";
+const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
 
 export class ApiHelper{
     get(uri) {
-        // console.log(APP_URL," url")
         return axios.get( uri, {
-            // headers:this.getHeaders(),
+            // headers:this.getHeaders()
             withCredentials: false
         })
             .then(this.checkResponse)
             .catch(this.handleError)
     }
     getHeaders(){
-        let defaultHeaders = BASE_URL;
-        defaultHeaders = {
-            // 'x-rapidapi-key': process.env.REACT_APP_RAPID_KEY,
-            // 'x-rapidapi-host':process.env.REACT_APP_RAPID_HOST,
-            'useQueryString':true,
+        const defaultHeaders = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': apiKey
         }
         return defaultHeaders
     }

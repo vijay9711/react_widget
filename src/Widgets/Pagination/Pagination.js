@@ -10,72 +10,43 @@ class Pagination extends React.Component{
     }
     nextPage = () => {
         let page = this.state.pageNumber + 1;
-        // page = page + 1;
         this.setState({pageNumber: page})
         this.props.onPageChange(page);
     }
     previousPage = () => {
         if(this.state.pageNumber > 1){
             let page = this.state.pageNumber - 1;
-            // page = page - 1;
             this.setState({pageNumber: page});
             this.props.onPageChange(page);
         }
     }
     getPage = (event) => {
         // event.preventDefault();
-        console.log(this.props)
-        if(this.props.totalPage >= event.target.value){  
-            this.setState({pageNumber: event.target.value});
-            this.props.onPageChange(event.target.value);
+        let currentPage = event.target.value == '' ? 1 : event.target.value;
+        if(this.props.totalPage >= currentPage){  
+            console.log(currentPage)
+            this.setState({pageNumber: currentPage});
+            this.props.onPageChange(currentPage);
         }
     }
+    
     render(){
-        const pageNumber = this.state.pageNumber
+        const pageNumber = this.state.pageNumber;
         return(
-            <div className="flex ">
-                <div className="flex justify-center items-center">
-                    <div className="bg-main lg:w-14 lg:h-14 sm:w-10 sm:h-10 rounded-full items-center text-center grid justify-items-center cursour-pointer" onClick={this.previousPage}>
-                        <img src={next} className="cursor-pointer transform rotate-90 lg:w-5 sm:w-3"></img> 
+            <div className="flex">
+                <div className="justify-center items-center grid grid-cols-4">
+                    <div className="bg-main col-span-1 lg:w-18 lg:h-18 sm:w-14 sm:h-14 rounded-full items-center text-center grid justify-items-center cursour-pointer" onClick={this.previousPage}>
+                        <img src={next} className="cursor-pointer transform rotate-90 lg:w-5 sm:w-4"></img> 
                     </div>
-                    <div className="flex shadow-xl">
-                        <input className="lg:w-14 lg:h-14 sm:w-10 sm:h-10  mx-4 items-center border-1 border-black text-center m-auto rounded-lg text-lg" value={pageNumber} onChange={this.getPage} />
+                    <div className="col-span-2 flex shadow-mainColorShadow rounded-xl pr-5">
+                        <input className="lg:w-20 lg:h-14 sm:w-10 sm:h-10 items-center border-1 border-black text-center m-auto rounded-lg text-lg" value={pageNumber} onChange={this.getPage} /> <div className='w-auto items-center border-1 flex border-black text-center m-auto rounded-lg text-xl'>/ {this.props.totalPage}</div>
                     </div>
-                    <div className="bg-main lg:w-14 lg:h-14 sm:w-10 sm:h-10  rounded-full items-center text-center grid justify-items-center cursor-pointer" onClick={this.nextPage}>
-                        <img src={next} className="transform -rotate-90 lg:w-5 sm:w-3"></img>
+                    <div className="bg-main col-span-1 lg:w-18 ml-auto lg:h-18 sm:w-14 sm:h-14  rounded-full items-center text-center grid justify-items-center cursor-pointer" onClick={this.nextPage}>
+                        <img src={next} className="transform -rotate-90 lg:w-5 sm:w-4"></img>
                     </div>
                 </div>
             </div>
         )
     }
 }
-// const Pagination = (props) =>{
-//     const [count, setCount] = useState(props.currentPage);
-//     const nextPage = () => {
-//         if(count > 0){
-//             setCount(count + 1);
-//             this.onPageChange();
-//         }
-//     }
-//     function previousPage(){
-//         if(count > 1){
-//             setCount(count - 1)
-//         }
-//     }
-//     return (
-//         <div className="flex p-10">
-//             <div className="flex">
-//                 <div className="bg-main w-14 h-14 rounded-full items-center text-center grid justify-items-center cursour-pointer" onClick={previousPage}>
-//                     <img src={next} className="transform rotate-90 w-5"></img> 
-//                 </div>
-//                 <div className="flex shadow-xl">
-//                     <input className="w-10 h-full mx-4 items-center text-center m-auto rounded-lg" value={count} />
-//                 </div>
-//                 <div className="bg-main w-14 h-14 rounded-full items-center text-center grid justify-items-center" onClick={nextPage}>
-//                     <img src={next} className="transform -rotate-90 w-5"></img>
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
 export default Pagination;
