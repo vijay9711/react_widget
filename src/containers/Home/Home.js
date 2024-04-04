@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import styled from "styled-components";
 // import Button from "../../Widgets/Button/Button.js";
 import { TrendingService } from "../../Services/MoviesServices/TrendingService.js";
-import Rating from "../../Widgets/Rating/Rating.js";
-import { ThemeProvider } from "styled-components";
 import MovieDetails from "../../Widgets/MovieDetail/MovieDetails.js";
 import FilterBar from "../../Widgets/FilterBar/FilterBar.js";
 import Loader from '../../Widgets/Loader.js';
 import Card from "../../Widgets/Card/card.js";
+import Aos from 'aos';
 
 const trendingService = new TrendingService();
 
@@ -52,7 +51,7 @@ class Home extends Component {
     getTrendingMovies = (page, genreId) => {
         this.setState({ loading: true });
         trendingService.getTrendingMovies(page, 'movie', genreId).then(res => {
-            this.setState({ trendingMovies: res.data.results })
+            this.setState({ trendingMovies: res.data.results });
             this.setState({ loading: false });
         }).catch(e => {
             console.log(e);
@@ -109,7 +108,7 @@ class Home extends Component {
 
                 {selectedMovieId === "" ?
                     <div className='flex flex-wrap'>
-                        <div className="w-full align-items-right">
+                        <div className="w-full align-items-right z-10">
                             <FilterBar
                                 title={"Movies"}
                                 currentPage={state.page}

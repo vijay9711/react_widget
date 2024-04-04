@@ -108,7 +108,7 @@ class Trending extends Component {
 
                 {selectedMovieId === "" ?
                     <div className='flex flex-wrap'>
-                        <div className="w-full align-items-right">
+                        <div className="w-full align-items-right z-10">
                             <FilterBar
                                 title={"Trending Now"}
                                 currentPage={state.page}

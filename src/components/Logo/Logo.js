@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
+import logo from "../../assets/logo/VijayWhite.svg";
 
 const LogoWrapper = styled.div`
     color: var(--color-white);
@@ -14,7 +15,8 @@ const LogoWrapper = styled.div`
 const Logo = () => {
     return (
         <LogoWrapper>
-            VJ
+            {/* VJ */}
+            <img src={logo} alt="vj's logo" />
         </LogoWrapper>
     )
 }

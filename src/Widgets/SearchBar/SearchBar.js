@@ -74,7 +74,7 @@ class SearchBar extends Component{
         return(
             <SearchBox>
                 <SearchInputWrapper className='p-0 w-full'>
-                    <SearchInput placeholder="Search " className='m-auto ml-3' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
+                    <SearchInput placeholder="Search " className='m-auto ml-3 sm:w-32 lg:w-auto' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
                     <SearchIconImg src={SearchIcon}></SearchIconImg>
                 </SearchInputWrapper>
             </SearchBox>

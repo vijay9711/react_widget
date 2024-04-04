@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const RatingWrapper = styled.div`
     display: inline-block;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-family: 'Roboto', sans-serif;
     line-height: 1;
     

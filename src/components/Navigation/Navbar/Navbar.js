@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 `
 const Navbar = () => {
     return (
-        <FixedWrapper>
+        <FixedWrapper className='z-10'>
             <Container>
                 <Wrapper>
                     <Logo />

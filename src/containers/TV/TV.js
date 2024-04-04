@@ -108,7 +108,7 @@ class TV extends Component {
 
                 {selectedMovieId === "" ?
                     <div className='flex flex-wrap'>
-                        <div className="w-full align-items-right">
+                        <div className="w-full align-items-right z-10">
                             <FilterBar
                                 title={"TV"}
                                 currentPage={state.page}
