@@ -19,7 +19,7 @@ module.exports = {
       mainDarkOpacity:"05445E50",
       mainLight: '#455a64',
       mainLighter: '#2E8BC0',
-      textColor: '#333',
+      textColor: '#2A3249',
       white: '#FFFFFF',
       cardBackground:"#cfd8dc",
       cardBG:"#E9E9E9",
@@ -37,7 +37,8 @@ module.exports = {
       'sm':'1rem',
       'xl':"2rem",
       '2xl':"2.5rem",
-      '4xl':'2.6rem'
+      '4xl':'2.6rem',
+      'title':'5rem'
     }
   },
   variants: {

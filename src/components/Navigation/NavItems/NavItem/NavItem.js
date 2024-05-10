@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Li = styled.li`
     display:flex;
@@ -26,10 +26,15 @@ const StyledNav = styled(NavLink)`
     }
 `
 
+
 const NavItem = ({ link, children, mobile, clicked }) => {
+    const location = useLocation();
+    const isActiveRoute = (routeName) => {
+        return location.pathname.includes(routeName);
+      };
     return (
         <Li>
-            <StyledNav activeClassName="active" exact to={link} mobile={mobile ? 1 : 0} onClick={clicked}>{children}</StyledNav>
+            <StyledNav className={isActiveRoute(children) ? 'active' : ''} to={link} mobile={mobile ? 1 : 0} onClick={clicked}>{children}</StyledNav>
         </Li>
     )
 }

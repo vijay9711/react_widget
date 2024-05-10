@@ -76,7 +76,7 @@ export default Genres;
 //         props.onGenresSelected(selectedGenres)
 //     }
 //     function getGenre (genre,index){
-//         let genreHTML = <Genre onClick={()=>{getSelectedGenre(index)}} className={genre.checked === false ? 'bg-main color-white':'bg-white'} id={genre.id}>{genre.name}</Genre>
+//         let genreHTML = <Genre onClick={()=>{getSelectedGenre(index)}} className={genre.checked === false ? 'bg-primary  color-white':'bg-white'} id={genre.id}>{genre.name}</Genre>
 //         return genreHTML
 //     }
 //     return (

@@ -26,7 +26,9 @@ export default createGlobalStyle`
         --color-text: ${props => props.theme.colors.textColor};
         --color-white: ${props => props.theme.colors.white};
         --shadow: ${props => props.theme.colors.shadow};
+        --p: ${props => props.theme.colors.ratingBg};
         --color-starBackground: ${props => props.theme.colors.starBackGround};
+        --color-ratingBg: ${props => props.theme.colors.ratingBg};
         @media ${props => props.theme.mediaQueries.small} {
         font-size: 60%;
         }

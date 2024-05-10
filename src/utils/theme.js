@@ -8,7 +8,8 @@ const theme = {
         white: '#FFFFFF',
         cardBG:"#E9E9E9",
         shadow: 'rgba(0,0,0,.2)',
-        starBackGround:"#fc0"
+        starBackGround:"#fc0",
+        ratingBg: "#BFC1C8"
     },
     mediaQueries: {
         smallest: `only screen and (max-width: 25em)`,
