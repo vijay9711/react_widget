@@ -5,7 +5,9 @@ import styled from 'styled-components';
 
 const Nav = styled.nav`
     display:flex;
-    margin-top: ${props => (props.mobile ? '6rem' : null)};
+    ${'' /* margin-top: ${props => (props.mobile ? '6rem' : null)}; */}
+    padding: ${props => (props.mobile ? '3rem' : null)};
+    height: fit-content;
 `
 const Ul = styled.ul`
     display:flex;

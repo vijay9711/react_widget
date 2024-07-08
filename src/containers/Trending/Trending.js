@@ -33,12 +33,13 @@ class Trending extends Component {
             page: 1,
             selectedMovieId: "",
             selectedMovieData: "",
-            totalPage: 1000,
+            totalPage: 500,
             searchQuery: '',
             genres: [],
             loading: false,
             genreId: '',
-            navigateToNewPage: false
+            navigateToNewPage: false,
+            routeMediaType:""
         }
     }
     componentDidMount() {
@@ -70,13 +71,9 @@ class Trending extends Component {
         }
     }
     getSelectedMovie = (event) => {
-        // this.context.router.history.push(`/${event.id}/details`);
-        // this.navigate(`/${event.id}/details`);
-        // console.log(event);
         this.setState({ selectedMovieId: event.id});
-        if(event.media_type == "movie"){
-            this.setState({ navigateToNewPage: true });
-        }
+        this.setState({routeMediaType : event.media_type});
+        this.setState({ navigateToNewPage: true });
         
     }
     onPageChange = (page) => {
@@ -112,7 +109,7 @@ class Trending extends Component {
         const state = this.state;
 
         if (this.state.navigateToNewPage) {
-            return <Navigate to={`/trending/${this.state.selectedMovieId}/details`} />;
+            return <Navigate to={`/${this.state.routeMediaType}/${this.state.selectedMovieId}/details`} />;
         }
         return (
             <div className="">
@@ -131,11 +128,11 @@ class Trending extends Component {
                                 search={(event) => this.searchedText(event, state.page)}
                             />
                         </div>
-                        {state.trendingMovies.length > 0 ?
-                            <div id='trending-section' className="justify-between overflow-auto grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 lg:pt-32 m-auto sm:pt-56">
+                        {!this.loading ?
+                            <div id='trending-section' className="justify-between overflow-auto grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 md:pt-32 m-auto sm:pt-56">
                                 {state.trendingMovies.map((movie, index) => {
                                     return (
-                                        <Card index={index} item={movie} getSelectedItem={(event)=>this.getSelectedMovie(event)}/>
+                                        <Card key={index} index={index} item={movie} getSelectedItem={(event)=>this.getSelectedMovie(event)}/>
                                     )
                                 })}
                             </div> :

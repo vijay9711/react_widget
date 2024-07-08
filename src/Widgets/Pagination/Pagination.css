@@ -1,0 +1,14 @@
+.pagination .page-link{
+  border-radius: 100px !important;
+  /* border-color: var(--color-mainLight) !important; */
+  color: var(--color-main);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 11px;
+}
+
+.pagination .active > .page-link{
+  background-color: var(--color-main);
+  border-color: var(--color-main);
+}

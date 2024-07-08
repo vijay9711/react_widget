@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Pagination from "../Pagination/Pagination.js";
 import SearchBar from "../SearchBar/SearchBar.js";
 import styled from "styled-components";
-import Genres from "../Genres/genres.js";
+import SearchIcon from "../../assets/search/search.gif";
 
 const FilterBarWrapper = styled.div`
     display: flex;
@@ -12,7 +12,7 @@ const FilterBarWrapper = styled.div`
     background-color: white;
 `
 const Container = styled.div`
-    display: flex;
+    ${'' /* display: flex; */}
     ${'' /* align-self: center; */}
     ${'' /* height: -webkit-fill-available; */}
     ${'' /* margin: 0px 10px; */}
@@ -22,7 +22,6 @@ class FilterBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
         }
     }
     onPageChange = (page) => {
@@ -37,12 +36,18 @@ class FilterBar extends Component {
         console.log(data.target.value, " genres");
         this.props.selectedGenre(data.target.value.toString());
     }
+    toggleFilter = () => {
+        this.setState({ isFilter: !this.state.isFilter });
+    }
     render() {
         return (
-            <FilterBarWrapper className="w-full md:d-block flex-wrap sm:pb-3 md:pb-3">
-                <div className="grid lg:grid-cols-2 lg:grid-rows-1 sm:grid-cols-1 sm:grid-rows-2 lg:justify-end w-full p-5 xl:px-32 xl:mx-48">
+            <FilterBarWrapper className="w-full md:d-block flex-wrap md:pb-3">
+                <div className="grid lg:grid-cols-2 lg:grid-rows-1 sm:grid-cols-1 md:flex  lg:justify-end w-full p-5 xl:px-32 xl:mx-48">
                     <div className="lg:col-span-1 lg:justify-start sm:grid-cols-2 flex flex-wrap sm:justify-between sm:w-full">
-                        <span className="text-2xl font-bold text-main m-0 flex items-center">{this.props.title}</span>
+                        <div className="flex">
+                            <span className="text-2xl font-bold text-main m-0 flex items-center">{this.props.title}</span>
+
+                        </div>
                         {
                             this.props.title != "Trending Now" ?
                                 <Container className="my-auto sm:ml-auto lg:ml-3 md:ml-auto">
@@ -63,14 +68,13 @@ class FilterBar extends Component {
                         }
 
                     </div>
-                    <div className="lg:col-span-1 lg:justify-end sm:grid-cols-2 flex flex-wrap sm:justify-between sm:w-full sm:pt-5">
-
-                        <Container className='my-auto mr-3 h-auto'>
-                            <Pagination className="ml-auto" currentPage={this.props.currentPage} onPageChange={this.onPageChange} totalPage={this.props.totalPage}></Pagination>
-                        </Container>
-                        <Container className='d-flex w-fit ml-5'>
-                            <SearchBar searchResult={this.searchResult} />
-                        </Container>
+                    <div className="sm:m-0 md:ml-auto sm:grid-cols-1 sm:grid-rows-2 md:grid-rows-1 md:grid-cols-1 flex sm:flex-wrap md:flex-nowrap ">
+                        <div className="sm:w-full md:flex md:align-middle items-center">
+                            <Pagination className="md:ml-auto" currentPage={this.props.currentPage} onPageChange={this.onPageChange} totalPage={this.props.totalPage}></Pagination>
+                        </div>
+                        <div className="sm:w-full md:ml-4 md:mt-0 sm:mt-4 md:flex md:align-middle md:items-center">
+                            <SearchBar className="sm:m-auto" searchResult={this.searchResult} />
+                        </div>
                     </div>
                 </div>
             </FilterBarWrapper>

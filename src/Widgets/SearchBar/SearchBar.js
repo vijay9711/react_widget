@@ -2,18 +2,18 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
  import SearchIcon from "../../assets/search/search.gif";
 const SearchBox = styled.div`
-    max-width: 30rem;
+    ${'' /* max-width: 50rem; */}
     margin-left: auto;
 `
 const SearchInput = styled.input`
-    height: 2em;
+    ${'' /* height: 2em; */}
     border-radius: 30px;
     font-size: 16px;
 `
 const SearchInputWrapper = styled.div`
     padding:5px;
     border: 0px;
-    border-radius: 30px;
+    ${'' /* border-radius: 30px; */}
     background-color: white;
     ${'' /* margin-right: 3rem; */}
     display: flex;
@@ -73,9 +73,9 @@ class SearchBar extends Component{
     render(){
         return(
             <SearchBox>
-                <SearchInputWrapper className='p-0 w-full'>
-                    <SearchInput placeholder="Search " className='m-auto ml-3 sm:w-32 lg:w-auto' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
-                    <SearchIconImg src={SearchIcon}></SearchIconImg>
+                <SearchInputWrapper className='p-0 w-full sm:rounded-lg md:rounded-full'>
+                    <SearchInput placeholder="Search " className='m-auto sm:m-0 md:ml-3 sm:w-32 lg:w-auto sm:!h-5' type='text' onKeyUp={(event)=>{this.handleInputChange(event)}}/>
+                    {/* <SearchIconImg className='sm:hidden md:flex' src={SearchIcon}></SearchIconImg> */}
                 </SearchInputWrapper>
             </SearchBox>
         )

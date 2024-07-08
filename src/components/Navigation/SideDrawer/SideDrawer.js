@@ -27,19 +27,21 @@ const Wrapper = styled.div`
 `
 const Menu = styled.div`
     position: fixed;
-    width: 100%;
+    width: 70%;
     top: 0;
     left: 0;    
     display: flex;
-    align-items: center;
+    ${'' /* align-items: center; */}
     justify-content: center;
     background-color: var(--color-mainDark);
     height: 100vh;
     visibility: ${props => props.opened ? 'visible' : 'hidden'};
-    transform: translateY(${props => props.opened ? '0%' : '-100%'});
-    transition: all .3s cubic-bezier(0.61, 1, 0.88, 1);
+    transform: translateX(${props => props.opened ? '45%' : '150%'});
+    transition: all .2s cubic-bezier(0.61, 1, 0.88, 1);
     margin-top: 6rem;
-    display:none;
+    display: none;
+    z-index: 100;
+    ${'' /* border-bottom-left-radius: 9px; */}
     @media ${props => props.theme.mediaQueries.small}{
         display:flex;
     }

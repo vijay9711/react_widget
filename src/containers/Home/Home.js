@@ -6,7 +6,8 @@ import MovieDetails from "../../Widgets/MovieDetail/MovieDetails.js";
 import FilterBar from "../../Widgets/FilterBar/FilterBar.js";
 import Loader from '../../Widgets/Loader.js';
 import Card from "../../Widgets/Card/card.js";
-import Aos from 'aos';
+import { Navigate } from 'react-router-dom';
+// import Aos from 'aos';
 // import { useHistory } from "react-router-dom";
 
 const trendingService = new TrendingService();
@@ -33,7 +34,9 @@ class Home extends Component {
             searchQuery: '',
             genres: [],
             loading: false,
-            genreId: ''
+            genreId: '',
+            navigateToNewPage: false,
+            routeMediaType:""
         }
     }
     componentDidMount() {
@@ -52,6 +55,7 @@ class Home extends Component {
     getTrendingMovies = (page, genreId) => {
         this.setState({ loading: true });
         trendingService.getTrendingMovies(page, 'movie', genreId).then(res => {
+            console.log(res, " movie data");
             this.setState({ trendingMovies: res.data.results });
             this.setState({ loading: false });
         }).catch(e => {
@@ -61,7 +65,9 @@ class Home extends Component {
     }
     
     getSelectedMovie = (event) => {
-        this.setState({ selectedMovieId: event.id, selectedMovieData: event });
+        this.setState({ selectedMovieId: event.id});
+        this.setState({routeMediaType : event.media_type});
+        this.setState({ navigateToNewPage: true });
     }
     onPageChange = (page) => {
         this.setState({ page: page });
@@ -95,6 +101,9 @@ class Home extends Component {
         const selectedMovieId = this.state.selectedMovieId;
         const selectedMovieData = this.state.selectedMovieData;
         const state = this.state;
+        if (this.state.navigateToNewPage) {
+            return <Navigate to={`/${this.state.routeMediaType}/${this.state.selectedMovieId}/details`} />;
+        }
         return (
             <div className="">
                 {

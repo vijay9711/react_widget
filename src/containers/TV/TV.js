@@ -64,7 +64,7 @@ class TV extends Component {
         }
     }
     getSelectedMovie = (event) => {
-        this.setState({ selectedMovieId: event.id, selectedMovieData: event });
+        this.setState({ selectedMovieId: event.id });
     }
     onPageChange = (page) => {
         this.setState({ page: page });
@@ -118,7 +118,7 @@ class TV extends Component {
                             />
                         </div>
                         {state.trendingMovies.length > 0 ?
-                            <div id='tv-section' className="justify-between overflow-auto grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 lg:pt-32 m-auto sm:pt-56">
+                            <div id='tv-section' className="justify-between overflow-auto grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 lg:pt-32 m-auto sm:pt-56">
                                 {state.trendingMovies.map((movie, index) => {
                                     return (
                                         <Card index={index} item={movie} getSelectedItem={(event)=>this.getSelectedMovie(event)}/>

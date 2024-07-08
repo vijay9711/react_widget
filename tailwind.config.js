@@ -5,13 +5,21 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     screens:{
-      'sm': '320px',
+      'sm': '300px',
       'md': '768px',
       'lg': '1024px',
       'xl': '2560px'
     },
     extend: {
-      backgroundColor: ['active']
+      keyframes: {
+        fadeIn: {
+          '0%': {  transform: 'translateX(10px)' },
+          '100%': {  transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        fadeIn: 'fadeIn 1s ease-out forwards',
+      },
     },
     colors: {
       main: '#131C35',

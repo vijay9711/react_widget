@@ -19,6 +19,7 @@ const Wrapper = styled.div`
     display:flex;
     justify-content: space-between;
     height:100%;
+    align-items: end;
 `
 const Navbar = () => {
     return (
@@ -26,6 +27,7 @@ const Navbar = () => {
             <Container>
                 <Wrapper>
                     <Logo />
+                    {/* <p className='text-white'>Srivatsav</p> */}
                     <NavItems />
                 </Wrapper>
             </Container>
