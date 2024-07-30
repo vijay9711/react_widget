@@ -21,7 +21,7 @@ const Card = (props) => {
   }, [props.item.id])
   const selectedItem = (item) => {
     // props.getSelectedItem(item);
-    navigate(`/${item.media_type}/${item.id}/details`);
+    navigate(`/${item.media_type ? item.media_type : props.parent}/${item.id}/details`);
   }
   const getRatingBG = (rating) => {
     return {

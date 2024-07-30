@@ -40,7 +40,7 @@ class Genres extends Component{
         let genreList = this.state.genres;
         genreList[index].checked = !genreList[index].checked
         this.setState({genres: genreList});
-        console.log(this.state.genres, " list ");
+        // console.log(this.state.genres, " list ");
         this.props.onGenresSelected(genreList)
     }
     render(){

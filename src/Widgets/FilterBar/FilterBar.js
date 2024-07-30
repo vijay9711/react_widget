@@ -25,15 +25,15 @@ class FilterBar extends Component {
         }
     }
     onPageChange = (page) => {
-        console.log(page);
+        // console.log(page);
         this.props.onPageChange(page);
     }
     searchResult = (searchText) => {
-        console.log('result', searchText)
+        // console.log('result', searchText)
         this.props.search(searchText);
     }
     onGenresSelected = (data) => {
-        console.log(data.target.value, " genres");
+        // console.log(data.target.value, " genres");
         this.props.selectedGenre(data.target.value.toString());
     }
     toggleFilter = () => {
@@ -72,9 +72,12 @@ class FilterBar extends Component {
                         <div className="sm:w-full md:flex md:align-middle items-center">
                             <Pagination className="md:ml-auto" currentPage={this.props.currentPage} onPageChange={this.onPageChange} totalPage={this.props.totalPage}></Pagination>
                         </div>
-                        <div className="sm:w-full md:ml-4 md:mt-0 sm:mt-4 md:flex md:align-middle md:items-center">
-                            <SearchBar className="sm:m-auto" searchResult={this.searchResult} />
-                        </div>
+                        {
+                            this.props.title == "Trending Now" ? null : <div className="sm:w-full md:ml-4 md:mt-0 sm:mt-4 md:flex md:align-middle md:items-center">
+                                <SearchBar className="sm:m-auto" searchResult={this.searchResult} />
+                            </div>
+                        }
+
                     </div>
                 </div>
             </FilterBarWrapper>

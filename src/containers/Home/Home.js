@@ -45,7 +45,7 @@ class Home extends Component {
     }
     getAllGenres = () => {
         trendingService.getAllGenres('movie').then(res => {
-            console.log(res, "all genres");
+            // console.log(res, "all genres");
             this.setState({ genres: res.data.genres });
         }).catch(e => {
             console.log(e);
@@ -55,7 +55,7 @@ class Home extends Component {
     getTrendingMovies = (page, genreId) => {
         this.setState({ loading: true });
         trendingService.getTrendingMovies(page, 'movie', genreId).then(res => {
-            console.log(res, " movie data");
+            // console.log(res, " movie data");
             this.setState({ trendingMovies: res.data.results });
             this.setState({ loading: false });
         }).catch(e => {
@@ -84,7 +84,7 @@ class Home extends Component {
         this.getTrendingMovies(this.state.page, genreId);
     }
     searchedText = (query, page) => {
-        console.log(query, "query");
+        // console.log(query, "query");
         this.setState({ searchQuery: query });
         if (query) {
             trendingService.searchMovie(page, query).then(res => {
@@ -127,7 +127,7 @@ class Home extends Component {
                             <div id='movie-section' className="justify-between overflow-auto grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 lg:pt-32 m-auto sm:pt-56">
                                 {state.trendingMovies.map((movie, index) => {
                                     return (
-                                        <Card index={index} item={movie} getSelectedItem={(event)=>this.getSelectedMovie(event)}/>
+                                        <Card parent={"movie"} index={index} item={movie} getSelectedItem={(event)=>this.getSelectedMovie(event)}/>
                                     )
                                 })}
                             </div> :

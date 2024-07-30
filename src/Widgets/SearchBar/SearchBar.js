@@ -56,7 +56,7 @@ class SearchBar extends Component{
             self.sendToParent(self.state.name);
             }, 500)
         });
-        console.log(self.state);
+        // console.log(self.state);
     }
     sendToParent = (event) =>{
         this.props.searchResult(event);
@@ -67,7 +67,7 @@ class SearchBar extends Component{
     }
     clearTime=()=>{
         clearTimeout(this.state.typingTimer);
-        console.log(" I'm cleare timepout",this.state.doneTypingTime)
+        // console.log(" I'm cleare timepout",this.state.doneTypingTime)
     }
 
     render(){

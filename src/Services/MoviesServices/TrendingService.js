@@ -2,6 +2,7 @@ import { ApiHelper } from '../ApiHelper'
 
 const apiHelper = new ApiHelper();
 const url = process.env.REACT_APP_MOVIE_URL;
+const url_without_version = process.env.REACT_APP_MOVIE_URL_WITHOUT_VERSION;
 const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
 
 export class TrendingService{
@@ -19,7 +20,7 @@ export class TrendingService{
         return apiHelper.get(api); 
     }
     searchMovie = (page,query) =>{
-        const api = `${url}/search/movie?language=en-US&query=${query}&page=${page}&size=10&api_key=${apiKey}`
+        const api = `${url}/search/movie?query=${query}&page=${page}&size=10&api_key=${apiKey}&append_to_response=media_type`
         return apiHelper.get(api);
     }
 }

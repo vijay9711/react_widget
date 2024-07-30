@@ -48,7 +48,7 @@ class Trending extends Component {
     }
     getAllGenres = () => {
         trendingService.getAllGenres().then(res => {
-            console.log(res, "all genres");
+            // console.log(res, "all genres");
             this.setState({ genres: res.data.genres });
         }).catch(e => {
             console.log(e);
@@ -90,7 +90,7 @@ class Trending extends Component {
         this.getTrendingMovies(this.state.page, genreId);
     }
     searchedText = (query, page) => {
-        console.log(query, "query");
+        // console.log(query, "query");
         this.setState({ searchQuery: query });
         if (query) {
             trendingService.searchMovie(page, query).then(res => {
