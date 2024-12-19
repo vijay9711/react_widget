@@ -9,5 +9,15 @@ export class TvService{
         const api = `${url}/tv/${tv_id}?api_key=${apiKey}`
         return apiHelper.get(api);
     }
+
+    getTvWatchProviderById(tv_id){
+        const api = `${url}/tv/${tv_id}/watch/providers?api_key=${apiKey}`
+        return apiHelper.get(api);
+    }
+
+    getEpisodesBySeriesIdAndSeasonNo(series_id, season_number){
+        const api = `${url}/tv/${series_id}/season/${season_number}?api_key=${apiKey}`;
+        return apiHelper.get(api);
+    }
 }
 export default TvService;

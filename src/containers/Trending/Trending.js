@@ -113,9 +113,9 @@ class Trending extends Component {
         }
         return (
             <div className="">
-                {
+                {/* {
                     this.state.loading ? <Loader /> : null
-                }
+                } */}
                     <div className='flex flex-wrap'>
                         <div className="w-full align-items-right z-10">
                             <FilterBar

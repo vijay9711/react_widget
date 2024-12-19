@@ -12,7 +12,7 @@ import Layout from "./hoc/layout/Layout.js";
 import Loading from "./containers/Loading/Loading.js";
 import { RegionProvider, useRegionContext } from './utils/RegionContext.js';
 import CommonService from './Services/commonService.js';
-
+// import Loader from './Widgets/Loader.js';
 const commonService = new CommonService;
 
 const Home = lazy(() => import('./containers/Home/Home'));
@@ -23,13 +23,14 @@ const Contact = lazy(() => import('./containers/Contact/Contant'));
 const Trending = lazy(() => import('./containers/Trending/Trending.js'));
 const MovieDetails = lazy(() => import('./Widgets/MovieDetail/MovieDetails'));
 const TvDetails = lazy(() => import('./Widgets/TvDetails/TvDetails'));
-// const Loading = lazy(()=>{import('./containers/Loading/Loading.js')}); 
+const CardList = lazy(()=>import('./Widgets/cardList.js'));
 const App = () => {
+
     return (
         <Layout>
             <RegionProvider>
                 <Routes >
-                    <Route exact path="/" element={<Suspense fallback={<div>..loading</div>}><Navigate to="/trending" replace /></Suspense>} />
+                    <Route exact path="/" element={<Suspense fallback={<Loading/>}><Navigate to="/trending" replace /></Suspense>} />
                     <Route exact path='/trending' element={<Suspense fallback={<Loading />}><Trending /></Suspense>}></Route>
                     <Route exact path="/movies" element={<Suspense fallback={<Loading />}><Home /></Suspense>}></Route>
                     <Route exact path="/tv" element={<Suspense fallback={<Loading />}><TV /></Suspense>}></Route>
@@ -39,6 +40,9 @@ const App = () => {
                     <Route exact path="/movie/:id/details" element={<Suspense fallback={<Loading />}><MovieDetails /></Suspense>}></Route>
                     <Route exact path="/tv/:id/details" element={<Suspense fallback={<Loading />}><TvDetails /></Suspense>}></Route>
                     <Route path="*" to="/trending"></Route>
+
+
+                    <Route exact path='/test' element={<Suspense fallback={<Loading />}><CardList /></Suspense>}></Route>
                 </Routes>
             </RegionProvider>
         </Layout>

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Rating from "../Rating/Rating";
 import { ThemeProvider } from "styled-components";
 import Anime  from "animejs";
 import { useNavigate } from "react-router-dom";
+import {Image} from "semantic-ui-react";
 const anime = Anime;
 const Card = (props) => {
   const navigate = useNavigate();
@@ -29,8 +30,10 @@ const Card = (props) => {
     }
   }
   return (
-        <div key={props.index} onClick={() => selectedItem(props.item)} className={`group bg-main text-white rounded-xl  shadow:lg border-1 overflow-hidden m-5 cursor-pointer hover:shadow-mainColorShadow duration-500 z-0 card-animation`}>
-          <img className="w-full h-5/6" src={process.env.REACT_APP_IMAGE_URL + props.item.poster_path} alt="poster" />
+        <div key={props.index} onClick={() => selectedItem(props.item)} className={`group bg-main text-white rounded-xl  shadow:lg border-1 overflow-hidden m-5 cursor-pointer hover:shadow-mainColorShadow duration-500 z-0 card-animation min-h-5/6`}>
+          {/* <img className="w-full h-5/6" src={process.env.REACT_APP_IMAGE_URL + props.item.poster_path} alt="poster" /> */}
+          <Image className="w-full h-5/6" src={process.env.REACT_APP_IMAGE_URL + props.item.poster_path} onError={i => i.target.style.display='none'} />
+          
           <div className="px-5 py-3">
             <ThemeProvider theme={getRatingBG(props.item.vote_average)}>
               <Rating id={props.index + 'rating'} />{props.item.media_type ? <span className="border px-2 py-1 bg-white text-main font-bold rounded-lg">{props.item.media_type ? props.item.media_type : ""}</span> : ""} 
