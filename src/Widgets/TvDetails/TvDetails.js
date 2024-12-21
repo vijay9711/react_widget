@@ -69,13 +69,16 @@ const TvDetails = () => {
         return (hours + "h " + minutes + "m");
     }
     return (
-        
+
         <div className="Note p-5" key={id}>
             <div className="grid lg:grid-cols-1 pb-5 p-5 m-auto">
                 <div className="grid justify-end">
                     <button className="text-xl w-fit" onClick={() => { navigate(-1) }}>  <FontAwesomeIcon icon={faArrowLeft} className="mr-5 animate-fadeIn" />Back</button>
                 </div>
                 <div className="grid xs:grid-col-2 xs:grid-row-1 lg:grid-col-1 lg:grid-row-2 shadow-mainColorShadow relative rounded">
+                    <div className="text-bg-text text-white absolute opacity-20 font-extrabold right-5 leading-none">
+                            TV
+                    </div>
                     <div className="bg-cover bg-no-repeat rounded" style={{ backgroundImage: `url(${process.env.REACT_APP_BG_IMAGE_URL + item.backdrop_path})` }}>
                         <div className="overflow-hidden bg-textColor bg-opacity-50 md:flex md:flex-row xs:flex xs:flex-col p-5 ">
                             <div className="md:row-span-1 md:col-span-1 rounded-tl rounded-tr h-fit">
@@ -93,7 +96,7 @@ const TvDetails = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="grid grid-row-2 grid-cols-1 w-full overflow-y-scroll no-scrollbar" style={{height:'60rem'}}>
+                            <div className="grid grid-row-2 grid-cols-1 w-full overflow-y-scroll no-scrollbar" style={{ height: '60rem' }}>
                                 <div className="bg-main row-span-1 bg-opacity-40 w-full rounded-lg xs:m-0 p-5 h-full">
                                     <div className="flex justify-start items-center flex-wrap">
                                         <div className="w-full d-flex">
@@ -106,51 +109,63 @@ const TvDetails = () => {
                                             <div className="pr-2 flex align-middle text-center items-center text-white flex-none h-full">
                                                 <p className="text-lg text-white font-normal ml-2">Last on air {item.last_air_date}</p>
                                             </div>
-                                            <div className="text-white flex flex-none">
+                                            <div className="pr-2 text-white flex flex-none">
                                                 <p className="text-lg text-white font-normal ml-2">{item.original_language}</p>
                                             </div>
+                                            <div className="text-white flex flex-none">
+                                                <p className="text-lg text-white font-normal ml-2">Directed: {item.original_language}</p>
+                                            </div>
                                         </div>
-                                        <div className="flex justify-start mt-3 items-center w-full flex-wrap pr-5 xs:my-3">
-                                            {item && item.genres && item.genres.map((genre, index) => {
-                                                return (
-                                                    <span key={index} className={` bg-white border-1 border-textColor rounded-full text-main tracking-wide w-fit px-2 py-0 text-md ${index == 0 ? 'mr-1' : 'mx-1'}`}>{genre.name}</span>
-                                                )
-                                            })}
+                                    </div>
+                                    <div className="justify-start mt-3 w-full flex-wrap pr-5 xs:my-3 xs:flex-col md:flex-row text-white">
+                                        <div className="md:flex xs:grid xs:flex-col md:flex-row text-white">
+                                            <div className="flex-initial ">
+                                                <p className="font-bold text-xl text-white mb-1">Languages</p>
+                                                <p className="">{item && item.spoken_languages && item.spoken_languages.map((lang, langIndex) => {
+                                                    return (
+                                                        <span className={`${langIndex == 0 ? '' : 'ml-2'} text-md text-white font-normal`} key={langIndex}>{lang && lang.english_name} <span className="text-white bg-white bg-opacity-30 font-bold rounded-md px-1 py-0 uppercase">{lang && lang.iso_639_1}</span><span className={`${langIndex == item.spoken_languages.length - 1 ? 'hidden' : ''}`}>,</span></span>
+                                                    )
+                                                })}
+                                                </p>
+                                            </div>
+                                            <div className="flex-initial md:ml-10">
+                                                <p className="font-bold text-xl text-white mb-1">Genre</p>
+                                                {/* <div className="flex justify-start mt-3 items-center w-full flex-wrap pr-5 xs:my-3"> */}
+                                                    {item && item.genres && item.genres.map((genre, index) => {
+                                                        return (
+                                                            <span key={index} className={`border px-4 py-2 border-white bg-white cursor-default bg-opacity-25 rounded-full text-white tracking-wide w-fit text-md mr-1 hover:bg-white hover:text-main hover:border-none duration-300 transition-all ${index == 0 ? '' : 'ml-2'}`}>{genre.name}</span>
+                                                        )
+                                                    })}
+                                                {/* </div> */}
+                                            </div>
+                                            <div className="flex-initial md:ml-10">
+                                                <p className="font-bold text-xl mb-0">Watch on</p>
+                                                {watcher ?
+                                                    <div className="flex">
+                                                        <ProviderCard watcher={watcher} />
+                                                    </div>
+                                                    : <p className="text-cardBackground text-lg">Coming Soon...</p>}
+
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-1 grid-row-1">
                                         <div className="col-span-1">
-                                            <div className="xs:flex-col md:flex-row text-white">
-                                                <p className="font-bold text-xl">Description</p>
-                                                <p className="text-lg text-white font-normal">{item && item.overview}</p>
-                                            </div>
-                                            <div className=" text-white md:grid xs:grid grid-row-1 grid-flow-col grid-cols-4  h-fit items-baseline">
-                                                <div className="col-span-2">
-                                                    <p className="font-bold text-xl mb-0">Languages</p>
-                                                    <p className="">{item && item.spoken_languages && item.spoken_languages.map((lang, langIndex) => {
-                                                        return (
-                                                            <span className={`${langIndex == 0 ? '' : 'ml-2'} text-md text-white font-normal`} key={langIndex}>{lang && lang.english_name} <span className="text-white bg-white bg-opacity-30 font-bold rounded-md px-1 py-0 uppercase">{lang && lang.iso_639_1 && lang.iso_639_1}</span>,</span>
-                                                        )
-                                                    })}
-                                                    </p>
+                                        <div className="md:grid-cols-2 md:grid-rows-1 xs:grid-row-2 xs:grid-col-1 grid">
+                                                    <div className=" text-white col-span-1 row-span-1">
+                                                        <p className="font-bold text-xl mb-0">Description</p>
+                                                        <p className="text-lg text-white font-normal">{item && item.overview}</p>
+                                                    </div>
                                                 </div>
-                                                <div className="col-span-2">
-                                                    <p className="font-bold text-xl mb-0">Watch on</p>
-                                                    {watcher ?
-                                                        <div className="flex">
-                                                            <ProviderCard watcher={watcher} />
-                                                        </div>
-                                                        : <p>No OTT</p>}
 
-                                                </div>
-                                            </div>
                                         </div>
                                         <div className="col-span-1"></div>
                                     </div>
                                 </div>
                                 <div>
                                     {/* <div className="bg-main bg-opacity-40 mt-4 text-lg text-white font-semibold rounded-lg py-2 px-5">{item.number_of_seasons} Seasons & {item.number_of_episodes} Episodes</div> */}
-                                    <SeasonsAndEpisodes item={item}/>
+                                    <SeasonsAndEpisodes item={item} />
+                                    {/* <SeasonsAndEpisodes item={item}/> */}
                                 </div>
                             </div>
                         </div>

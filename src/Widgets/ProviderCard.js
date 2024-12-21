@@ -4,8 +4,7 @@ const ProviderCard = ({ watcher }) => {
   return (
     <div className="z-10 flex group bg-opacity-20 h-auto cursor-pointer rounded-lg  transition-all  hover:bg-opacity-0 relative">
       <span className=" flex ">
-        {watcher && watcher.slice(0, 3
-        ).map((item, index) => {
+        {watcher && watcher.slice(0, 3).map((item, index) => {
           return (
             <div key={index} className={`${index == 0 ? '' : '-ml-6'} w-12 rounded-full z-10 bg-cover h-12 group-hover:opacity-0`} style={{ backgroundImage: `url(${process.env.REACT_APP_IMAGE_URL + item.logo_path})` }}></div>
           )

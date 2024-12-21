@@ -111,6 +111,9 @@ const MovieDetail = () => {
                     <button className="text-xl w-fit" onClick={() => { navigate(-1) }}>  <FontAwesomeIcon icon={faArrowLeft} className="mr-5 animate-fadeIn" />Back</button>
                 </div>
                 <div className="grid xs:grid-col-2 xs:grid-row-1 lg:grid-col-1 lg:grid-row-2 shadow-mainColorShadow relative rounded">
+                <div className="text-bg-text text-white absolute opacity-20 font-extrabold right-5 leading-none ">
+                            MOVIE
+                    </div>
                     <div className="md:row-span-1 md:col-span-1 rounded-tl rounded-tr">
                         <div className=" bg-cover bg-no-repeat rounded" style={{ backgroundImage: `url(${process.env.REACT_APP_BG_IMAGE_URL + item.backdrop_path})` }}>
                             <div className="overflow-hidden bg-textColor bg-opacity-50 md:flex md:flex-row xs:flex xs:flex-col p-5 ">
@@ -193,7 +196,7 @@ const MovieDetail = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-span-1"></div>
+                                            {/* <div className="col-span-1"></div> */}
                                         </div>
                                     </div>
                                     <div className="row-span-1">

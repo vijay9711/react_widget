@@ -47,7 +47,8 @@ module.exports = {
       'xl':"2rem",
       '2xl':"2.5rem",
       '4xl':'2.6rem',
-      'title':'3rem'
+      'title':'3rem',
+      'bg-text':'22rem'
     }
   },
   variants: {
