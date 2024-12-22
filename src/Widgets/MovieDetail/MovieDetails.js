@@ -200,7 +200,7 @@ const MovieDetail = () => {
                                         </div>
                                     </div>
                                     <div className="row-span-1">
-                                        <Cast movieCast={movieCast} movieCrew={movieCrew} creditsTitle={creditsTitle} />
+                                        <Cast movieCast={movieCast} creditsTitle={creditsTitle} />
                                     </div>
                                 </div>
                             </div>

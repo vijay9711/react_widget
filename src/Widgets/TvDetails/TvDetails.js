@@ -11,7 +11,7 @@ import Rating from "../Rating/Rating.js";
 import ProviderCard from "../ProviderCard.js";
 import { useRegionContext } from "../../utils/RegionContext.js";
 import SeasonsAndEpisodes from "../seasonsAndEpisodes.js";
-
+import Cast from "../Cast.js";
 
 const anime = Anime;
 const tvShowService = new TvService;
@@ -21,6 +21,8 @@ const TvDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [watcher, setWatcher] = useState('');
+    const [creditsTitle, setCreditsTitle] = useState("");
+    const [movieCast, setMovieCast] = useState('');
     useEffect(() => {
         getTvDetails();
         getTvWatcherDetails();
@@ -41,6 +43,7 @@ const TvDetails = () => {
         tvShowService.getTvShowDetailById(id).then(res => {
             if (res.status == 200) {
                 let data = res.data;
+                getTvCrew(res.data.credits);
                 console.log(data, " tvDetails ");
                 data.spoken_languages?.map((lang) => {
                     if (lang.iso_639_1 == data.original_language) {
@@ -52,6 +55,27 @@ const TvDetails = () => {
                 console.log("something wrong");
             }
         })
+    }
+    const getTvCrew = (credits) => {
+        if (credits && (credits.cast || credits.crew)) {
+            console.log("credits ", credits);
+            let cast = [], title = [];
+            if (credits.cast.length) {
+                cast = credits.cast.filter(res => res.order <= 20);
+                cast = cast.concat(credits.crew.filter(res => res.popularity > 1 && res.profile_path));
+                cast.map((res, i) => {
+                    if (title.indexOf(res.known_for_department) == -1) {
+                        title.push(res.known_for_department);
+                        // console.log(res);
+                    }
+                })
+
+                // Remove duplicates
+                cast = cast.filter((obj1, i, arr) => arr.findIndex(obj2 => (obj2.name === obj1.name) && (obj2.character === obj1.character)) === i);
+            }
+            setCreditsTitle(title);
+            setMovieCast(cast);
+        }
     }
     const getTvWatcherDetails = () => {
         tvShowService.getTvWatchProviderById(id).then((res) => {
@@ -96,7 +120,7 @@ const TvDetails = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="grid grid-row-2 grid-cols-1 w-full overflow-y-scroll no-scrollbar" style={{ height: '60rem' }}>
+                            <div className="grid grid-row-2 grid-cols-1 w-full overflow-y-scroll no-scrollbar" style={{ height: '75rem' }}>
                                 <div className="bg-main row-span-1 bg-opacity-40 w-full rounded-lg xs:m-0 p-5 h-full">
                                     <div className="flex justify-start items-center flex-wrap">
                                         <div className="w-full d-flex">
@@ -111,9 +135,6 @@ const TvDetails = () => {
                                             </div>
                                             <div className="pr-2 text-white flex flex-none">
                                                 <p className="text-lg text-white font-normal ml-2">{item.original_language}</p>
-                                            </div>
-                                            <div className="text-white flex flex-none">
-                                                <p className="text-lg text-white font-normal ml-2">Directed: {item.original_language}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -163,9 +184,10 @@ const TvDetails = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    {/* <div className="bg-main bg-opacity-40 mt-4 text-lg text-white font-semibold rounded-lg py-2 px-5">{item.number_of_seasons} Seasons & {item.number_of_episodes} Episodes</div> */}
                                     <SeasonsAndEpisodes item={item} />
-                                    {/* <SeasonsAndEpisodes item={item}/> */}
+                                </div>
+                                <div>
+                                    <Cast movieCast={movieCast} creditsTitle={creditsTitle} />
                                 </div>
                             </div>
                         </div>

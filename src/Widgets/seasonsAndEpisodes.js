@@ -10,10 +10,6 @@ const SeasonsAndEpisodes = ({ item }) => {
   const [episodes, setEpisodes] = useState([]);
 
   const seasonEpisodeTimeLine = gsap.timeline();
- 
-  // useEffect(() => {
-  //   animateSeason();
-  // }, []);
 
   useEffect(() => {
     if (selectedSeason !== null) {
@@ -21,7 +17,7 @@ const SeasonsAndEpisodes = ({ item }) => {
     } else {
       animateSeason();
     }
-  }, [selectedSeason,episodes]);
+  }, [selectedSeason, episodes]);
 
   const selectSeason = (season) => {
     console.log("season ", selectedSeason, " ", season)
@@ -29,7 +25,6 @@ const SeasonsAndEpisodes = ({ item }) => {
       // hide seasons and show episodes
       setSeason(season);
       getEpisodes(season);
-      animateEpisode();
     } else {
       // hide episodes and show season
       animateSeason();
@@ -39,48 +34,43 @@ const SeasonsAndEpisodes = ({ item }) => {
   const getEpisodes = (season) => {
     tvService.getEpisodesBySeriesIdAndSeasonNo(item.id, season.season_number).then((res) => {
       setEpisodes(res.data.episodes);
+
+    }).then(() => {
+      animateEpisode();
     })
   };
   const animateSeason = () => {
     seasonEpisodeTimeLine
-    .fromTo(".episode-cards",
-      {
-        display: "flex"
-      },
-      {
-        display: "none",
-      }
-    ).fromTo(".season-cards",
-      {
-        x: -30,
-        opacity: 0,
-        display: "flex"
-      },
-      {
-        x: 0,
-        opacity: 1,
-        stagger: .2,
-        duration: .8,
-        ease: "power2.out"
-      }
-    )
+      .to(".episode-cards",
+        {
+          display: "none",
+        }
+      ).fromTo(".season-cards",
+        {
+          display: "none",
+          x: -30,
+          opacity: 0,
+          display: "flex"
+        },
+        {
+          x: 0,
+          opacity: 1,
+          stagger: .2,
+          duration: .8,
+          ease: "power2.out",
+          delay: 0,
+          display: "flex",
+        }
+      )
   }
   const animateEpisode = () => {
     console.log("episodes ", episodes);
     seasonEpisodeTimeLine
-    .to(".season-cards",
-      {
-        display: "none",
-      }
-    )
-    // .fromTo(".all-episodes",
-    //   {
-    //     display: "none"
-    //   },
-    //   {
-    //     display: "flex"
-    //   }
-    // )
+      .to(".season-cards",
+        {
+          display: "none",
+        }
+      )
       .fromTo(".episode-cards",
         {
           display: "none",
@@ -93,7 +83,8 @@ const SeasonsAndEpisodes = ({ item }) => {
           stagger: .2,
           opacity: 1,
           duration: .8,
-          ease: "power2.out"
+          ease: "power2.out",
+          delay: 0
         }
       )
   }
@@ -119,37 +110,36 @@ const SeasonsAndEpisodes = ({ item }) => {
     )
   }
   return (
-    <div className="w-100 " style={{ minHeight: '30rem'}}>
-      <div className="bg-main bg-opacity-40 mt-4 text-lg text-white font-semibold rounded-lg py-2 px-5 w-full">{item.number_of_seasons} Seasons & {item.number_of_episodes} Episodes</div>
-        <div className="flex overflow-x-auto w-full h-auto flex-row no-scrollbar">
+    <div className="w-100 " style={{ minHeight: '30rem' }}>
+      <div className="bg-main bg-opacity-40 mt-4 text-lg text-white font-semibold rounded-lg py-2 px-5 w-full">{item.number_of_seasons} Seasons & {item.number_of_episodes} Episodes
+      </div>
+      <div className="flex overflow-x-auto w-full h-auto flex-row no-scrollbar">
         {/* All episodes */}
-          {/* <div className="all-episodes hidden overflow-x-auto w-full h-auto flex-row no-scrollbar"> */}
-            <div className="bg-mainDarkOpacity bg-cover bg-no-repeat episode-cards m-3 rounded-lg flex flex-col text-center text-lg text-black" style={{ backgroundImage: `url(${process.env.REACT_APP_BG_IMAGE_URL + selectedSeason?.poster_path})`, height: '30rem', minWidth: '20rem' }}>
-              <div className="m-auto bg-black rounded-lg bg-opacity-70 p-5 h-full w-full flex flex-col text-white justify-center">
-                <p className="text-xl font-bold">{selectedSeason?.name}</p>
-                <p className="text-xl font-bold">{episodes.length} Episodes</p>
-                <button className="text-xl w-fit bg-white text-black py-1 px-4 rounded-lg w-fit" onClick={() => { selectSeason(null) }}>  <FontAwesomeIcon icon={faArrowLeft} className="mr-5 animate-fadeIn" />All season</button>
-              </div>
-            </div>
-            {
-              episodes?.map((episode, id) => {
-                return (
-                  seasonAndEpisode(episode, id, 'episode')
-                )
-              })
-            }
-          {/* </div> */}
+        {/* <div className="all-episodes hidden overflow-x-auto w-full h-auto flex-row no-scrollbar"> */}
+        <div className="bg-mainDarkOpacity bg-cover bg-no-repeat episode-cards m-3 rounded-lg flex flex-col text-center text-lg text-black" style={{ backgroundImage: `url(${process.env.REACT_APP_BG_IMAGE_URL + selectedSeason?.poster_path})`, height: '30rem', minWidth: '20rem' }}>
+          <div className="m-auto bg-black rounded-lg bg-opacity-70 p-5 h-full w-full flex flex-col text-white justify-center">
+            <p className="text-xl font-bold">{selectedSeason?.name}</p>
+            <p className="text-xl font-bold">{episodes.length} Episodes</p>
+            <button className="text-xl w-fit bg-white text-black py-1 px-4 rounded-lg w-fit" onClick={() => { selectSeason(null) }}>  <FontAwesomeIcon icon={faArrowLeft} className="mr-5 animate-fadeIn" />All season</button>
+          </div>
         </div>
+        {
+          episodes?.map((episode, id) => {
+            return (
+              seasonAndEpisode(episode, id, 'episode')
+            )
+          })
+        }
         {/* All season */}
-        <div className="flex overflow-x-auto w-full h-auto flex-row no-scrollbar" >
-          {
-            item?.seasons?.map((season, id) => {
-              return (
-                seasonAndEpisode(season, id, 'season')
-              )
-            })
-          }
-        </div>
+        {
+          item?.seasons?.map((season, id) => {
+            return (
+              seasonAndEpisode(season, id, 'season')
+            )
+          })
+        }
+        {/* </div> */}
+      </div>
     </div>
   )
 }

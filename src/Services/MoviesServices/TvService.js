@@ -6,7 +6,7 @@ const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
 
 export class TvService{
     getTvShowDetailById(tv_id){
-        const api = `${url}/tv/${tv_id}?api_key=${apiKey}`
+        const api = `${url}/tv/${tv_id}?api_key=${apiKey}&append_to_response=credits`
         return apiHelper.get(api);
     }
 

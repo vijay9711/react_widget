@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef} from "react";
 import { Image } from 'semantic-ui-react';
 import NoUser from "../assets/nouser.png";
 
-const Cast = ({ movieCast, movieCrew, creditsTitle }) => {
+const Cast = ({ movieCast, creditsTitle }) => {
   const [active, setActive] = useState('Acting');
   return (
     <div>
