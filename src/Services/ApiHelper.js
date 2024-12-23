@@ -7,7 +7,7 @@ const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
 export class ApiHelper{
     get(uri) {
         return axios.get( uri, {
-            // headers:this.getHeaders()
+            // headers:this.getHeaders(),
             withCredentials: false
         })
             .then(this.checkResponse)
@@ -15,11 +15,11 @@ export class ApiHelper{
     }
     getHeaders(){
         const defaultHeaders = {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': apiKey
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json', 
+            'Authorization': 'Bearer ' + apiKey
         }
-        return defaultHeaders
+        return defaultHeaders;
     }
     checkResponse(response) {
         return response

@@ -100,9 +100,9 @@ class TV extends Component {
         const state = this.state;
         return (
             <div className="">
-                {
+                {/* {
                     this.state.loading ? <Loader /> : null
-                }
+                } */}
 
                 {selectedMovieId === "" ?
                     <div className='flex flex-wrap'>

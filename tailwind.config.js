@@ -47,12 +47,17 @@ module.exports = {
       'xl':"2rem",
       '2xl':"2.5rem",
       '4xl':'2.6rem',
-      'title':'5rem'
+      'title':'3rem',
+      'bg-text':'22rem'
     }
   },
   variants: {
     extend: {
-      display: ["group-hover"],
+      display: ["group-hover", "hover"],
+      translate: ["group-hover", "hover", "responsive"],
+      transform: ["group-hover", "hover", "responsive"],
+      width: ["responsive", "hover", "focus", "group-hover"],
+      position: ["responsive", "hover", "focus", "group-hover"],
     },
   },
   plugins: [],

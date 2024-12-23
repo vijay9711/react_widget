@@ -1,7 +1,7 @@
 import React, { useReducer, createContext, useContext } from "react";
 import { useEffect } from "react";
 import {CommonService} from "../Services/commonService";
-const commonService = new CommonService;
+const commonService = new CommonService();
 
 
 

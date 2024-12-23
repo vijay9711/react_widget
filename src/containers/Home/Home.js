@@ -106,9 +106,9 @@ class Home extends Component {
         }
         return (
             <div className="">
-                {
+                {/* {
                     this.state.loading ? <Loader /> : null
-                }
+                } */}
 
                 {selectedMovieId === "" ?
                     <div className='flex flex-wrap'>

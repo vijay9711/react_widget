@@ -3,7 +3,14 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div>Loading</div>
+    <div className="w-screen h-screen bg-overlay flex fixed z-10">
+    <div className=""></div>
+      {/* <img src={LoaderGif} className="m-auto"/> */}
+      {/* <iframe className="m-auto w-100 " src="https://lottie.host/embed/4737606a-bbe0-4f7b-b5d8-c9570bf6d32f/tHQMlYexCr.json"></iframe> */}
+      <div className="bg-main w-screen h-screen bg-opacity-30">
+          <p className="text-title">Loading....</p>
+      </div>
+    </div>
   )
 }
 
