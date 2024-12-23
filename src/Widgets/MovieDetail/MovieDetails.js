@@ -29,7 +29,6 @@ const MovieDetail = () => {
     const navigate = useNavigate();
     useEffect(() => {
         getMovieDetails();
-        // getMovieImages();
         getMovieWatchProvider();
         anime({
             targets: '.genre-anime',
