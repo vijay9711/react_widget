@@ -106,8 +106,8 @@ const MovieDetail = () => {
     return (
         <div className="Note p-5" key={id}>
             <div className=" grid lg:grid-cols-1 pb-5 lg:w-6/6  p-5 xs:w-5/6   m-auto">
-                <div className="grid justify-end">
-                    <button className="text-xl w-fit" onClick={() => { navigate(-1) }}>  <FontAwesomeIcon icon={faArrowLeft} className="mr-5 animate-fadeIn" />Back</button>
+                <div className="grid justify-end cursor-pointer">
+                    <button className="text-xl w-fit" onClick={() => { navigate(-1) }}>  <FontAwesomeIcon icon={faArrowLeft} className="mr-5" />Back</button>
                 </div>
                 <div className="grid xs:grid-col-2 xs:grid-row-1 lg:grid-col-1 lg:grid-row-2 shadow-mainColorShadow relative rounded">
                 <div className="text-bg-text text-white absolute opacity-20 font-extrabold right-5 leading-none ">
